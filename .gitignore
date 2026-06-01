@@ -7,6 +7,11 @@ Desktop.ini
 
 # Claude Code dev config (machine-specific, not part of the website)
 .claude/
+.agents/
+skills-lock.json
+
+# Local env file (publishable key is public-safe, but keep env files out of the repo)
+.env
 
 # Backup archive (redundant with git history) — remove this line to track it
 lumora_media_website.zip

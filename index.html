@@ -1478,7 +1478,7 @@
           <div class="meta">Lumora Media · Oslo · contact@lumoramedia.no</div>
         </div>
 
-        <form class="contact-form" action="mailto:contact@lumoramedia.no" method="post" enctype="text/plain">
+        <form class="contact-form" id="contact-form">
           <div class="cf-row">
             <div class="cf-field">
               <label for="cf-name">Navn *</label>
@@ -1614,6 +1614,61 @@
         });
       });
     });
+  </script>
+
+  <!-- ============ CONTACT FORM -> SUPABASE ============ -->
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.106.2';
+
+    const SUPABASE_URL = 'https://hruzsxgdlayusgqjzukn.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_9mOfhegjB94YtoHDoxgS0A_it9oMYm2';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+    const form = document.getElementById('contact-form');
+    if (form) {
+      const btn = form.querySelector('.cf-submit');
+      const btnLabel = btn ? btn.innerHTML : '';
+
+      const status = document.createElement('p');
+      status.className = 'cf-status';
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
+      status.style.cssText = 'margin-top:14px;font-size:14px;line-height:1.5;min-height:1em;';
+      form.appendChild(status);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (btn) { btn.disabled = true; btn.innerHTML = 'Sender …'; }
+        status.style.color = 'var(--muted)';
+        status.textContent = '';
+
+        const fd = new FormData(form);
+        const val = (k) => (fd.get(k) ?? '').toString().trim();
+        const payload = {
+          name: val('name'),
+          email: val('email'),
+          phone: val('phone') || null,
+          company: val('company') || null,
+          service: val('service') || null,
+          message: val('message') || null,
+        };
+
+        const { error } = await supabase.from('contact_submissions').insert(payload);
+
+        if (error) {
+          console.error('Supabase insert error:', error);
+          status.style.color = '#e0736b';
+          status.textContent = 'Noe gikk galt. Prøv igjen, eller send oss en e-post på contact@lumoramedia.no.';
+          if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
+          return;
+        }
+
+        form.reset();
+        status.style.color = 'var(--gold-light)';
+        status.textContent = 'Takk! Meldingen din er mottatt. Vi svarer vanligvis innen 3 timer.';
+        if (btn) { btn.innerHTML = 'Sendt ✓'; }
+      });
+    }
   </script>
 </body>
 </html>
