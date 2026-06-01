@@ -5,8 +5,8 @@ Desktop.ini
 .DS_Store
 *~
 
-# Local Claude Code settings (machine-specific)
-.claude/settings.local.json
+# Claude Code dev config (machine-specific, not part of the website)
+.claude/
 
 # Backup archive (redundant with git history) — remove this line to track it
 lumora_media_website.zip
