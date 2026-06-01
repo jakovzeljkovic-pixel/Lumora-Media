@@ -1,0 +1,1619 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lumora Media: Premium boliginnhold for meglere i Norge</title>
+<meta name="description" content="Foto, video, drone og twilight-innhold for meglere og meglerkontorer i Oslo og Norge. Premium eiendomsinnhold, rask levering, konkurransedyktige priser." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  :root {
+    --bg:           #0B0F1A;
+    --card:         #111520;
+    --card-2:       #0D1018;
+    --card-3:       #14192A;
+    --border:       #1E2333;
+    --gold:         #B8965A;
+    --gold-light:   #D4AF7A;
+    --gold-soft:    rgba(184,150,90,.20);
+    --gold-line:    rgba(184,150,90,.30);
+    --divider:      rgba(184,150,90,.20);
+    --white:        #FFFFFF;
+    --muted:        #8A8480;
+    --text:         #C8CCD2;
+
+    --serif: 'Archivo', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    --sans:  'Archivo', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+
+    --container: 1280px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+  ::selection { background: var(--gold); color: var(--bg); }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 720px) { .container { padding: 0 22px; } }
+
+  /* ============== Typography ============== */
+  .eyebrow {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .h-section {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(36px, 4.6vw, 64px);
+    letter-spacing: -0.005em;
+    line-height: 1.05;
+    color: var(--white);
+  }
+  .h-section .italic { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .sub-lede {
+    font-family: var(--sans); font-weight: 300;
+    font-size: 17px; line-height: 1.65;
+    color: var(--text);
+    max-width: 620px;
+  }
+
+  /* ============== Buttons ============== */
+  .btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 16px 30px;
+    border-radius: 4px;
+    background: var(--gold);
+    color: var(--bg);
+    border: 0;
+    font-family: var(--sans); font-weight: 500;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .3s var(--ease), transform .3s var(--ease);
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 15px 28px;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+    font-family: var(--sans); font-weight: 500;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ============== NAV ============== */
+  .nav {
+    position: sticky; top: 0;
+    z-index: 50;
+    padding: 18px 0;
+    background: rgba(11, 15, 26, .85);
+    backdrop-filter: saturate(1.3) blur(14px);
+    -webkit-backdrop-filter: saturate(1.3) blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--container); margin: 0 auto; padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .logo {
+    display: inline-flex; align-items: center; gap: 12px;
+    color: var(--white);
+    line-height: 1;
+  }
+  .logo svg { width: 24px; height: 24px; color: var(--gold); flex-shrink: 0; }
+  .logo .name {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
+    font-size: 20px; letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .logo .second {
+    font-family: 'Inter', system-ui, sans-serif; font-weight: 400;
+    font-size: 10px; letter-spacing: 0.32em;
+    color: var(--gold); margin-left: 10px; vertical-align: 2px;
+  }
+  .nav-links {
+    display: flex; gap: 28px;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--text);
+  }
+  .nav-links a { position: relative; padding-bottom: 4px; transition: color .25s var(--ease); }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    width: 100%; height: 1px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .3s var(--ease);
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    padding: 10px 20px; font-size: 11px;
+    background: var(--gold); color: var(--bg);
+    border-radius: 4px; border: 0;
+    font-family: var(--sans); font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background .25s var(--ease);
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+  @media (max-width: 1080px) { .nav-links { display: none; } }
+
+  /* ============== HERO ============== */
+  .hero {
+    position: relative;
+    min-height: 86vh;
+    display: flex; align-items: center;
+    padding: 120px 0 100px;
+    overflow: hidden;
+    isolation: isolate;
+    border-bottom: 1px solid var(--divider);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('img/hero.jpg');
+    background-size: cover;
+    background-position: center center;
+    z-index: -2;
+  }
+  .hero-fade {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(75% 100% at 20% 60%, rgba(11,15,26,0) 0%, rgba(11,15,26,.65) 65%, rgba(11,15,26,.96) 100%),
+      linear-gradient(180deg, rgba(11,15,26,.5) 0%, rgba(11,15,26,.25) 40%, rgba(11,15,26,.96) 100%);
+    z-index: -1;
+  }
+  .hero-content { max-width: 880px; position: relative; }
+  .hero-content .eyebrow { display: inline-block; }
+  .hero h1 {
+    margin-top: 26px;
+    margin-bottom: 26px;
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(50px, 7.2vw, 100px);
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--white);
+  }
+  .hero h1 .italic { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .hero .hero-sub {
+    font-family: var(--sans); font-weight: 300;
+    font-size: 18px; line-height: 1.65;
+    color: var(--text);
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+  .hero-cta-row { display: flex; gap: 18px; flex-wrap: wrap; }
+
+  /* Trust bar */
+  .trust {
+    margin-top: 56px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 820px;
+  }
+  .trust-item { display: flex; align-items: center; gap: 14px; }
+  .trust-ico {
+    width: 38px; height: 38px;
+    border: 1px solid var(--gold-line);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--gold);
+    flex-shrink: 0;
+    background: rgba(11,15,26,.5);
+  }
+  .trust-ico svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .trust-text {
+    font-family: var(--sans); font-weight: 400; font-size: 13px;
+    letter-spacing: 0.02em; color: var(--white); line-height: 1.4;
+  }
+  @media (max-width: 760px) { .trust { grid-template-columns: 1fr; gap: 18px; } }
+
+  /* ============== SECTION ============== */
+  .section {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--divider);
+    position: relative;
+  }
+  @media (max-width: 720px) { .section { padding: 80px 0; } }
+  .section-header { margin-bottom: 64px; max-width: 760px; }
+  .section-header .eyebrow { display: block; margin-bottom: 18px; }
+  .section-header h2 { margin-bottom: 18px; }
+  .section-header p { color: var(--text); font-size: 17px; line-height: 1.65; }
+
+  /* ============== WHAT WE OFFER (intro band) ============== */
+  .intro-band {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--divider);
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg) 0%, #0A0D14 100%);
+  }
+  .intro-band .eyebrow { display: inline-block; margin-bottom: 22px; }
+  .intro-band h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(36px, 4.4vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 22px;
+    color: var(--white);
+  }
+  .intro-band h2 .italic { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .intro-band p {
+    max-width: 720px; margin: 0 auto;
+    font-family: var(--sans); font-weight: 300;
+    font-size: 18px; line-height: 1.7; color: var(--text);
+  }
+
+  /* ============== PRICING GRID ============== */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .pricing-grid.three { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto; gap: 20px; }
+  .pricing-grid.two { grid-template-columns: repeat(2, 1fr); max-width: 920px; margin: 0 auto; gap: 22px; }
+  @media (max-width: 1100px) {
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid.three { grid-template-columns: 1fr; max-width: 540px; }
+  }
+  @media (max-width: 640px) {
+    .pricing-grid, .pricing-grid.two { grid-template-columns: 1fr; }
+  }
+
+  /* ============== PACKAGE CARD ============== */
+  .pkg-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .4s var(--ease), border-color .4s var(--ease);
+  }
+  .pkg-card:hover { border-color: rgba(184,150,90,.35); }
+  .pkg-card.featured { border: 2px solid var(--gold); }
+
+  .featured-ribbon {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--bg);
+    padding: 5px 16px;
+    font-family: var(--sans); font-weight: 500; font-size: 10px;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    border-radius: 0 0 4px 4px;
+    z-index: 3;
+  }
+
+  /* Card header: dark gradient with centered name */
+  .pkg-header {
+    background: linear-gradient(135deg, #0F1420 0%, #1A1F30 50%, #0F1420 100%);
+    border-bottom: 1px solid rgba(184,150,90,.25);
+    padding: 38px 22px 24px;
+    text-align: center;
+    position: relative;
+  }
+  .pkg-card.featured .pkg-header { padding-top: 44px; }
+  .pkg-header .pkg-name {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(32px, 3vw, 40px);
+    color: var(--white);
+    letter-spacing: 0.015em;
+    line-height: 1;
+  }
+  .pkg-tag {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--sans); font-weight: 400; font-size: 10px;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .pkg-tag .icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 12px; height: 12px;
+    font-size: 14px; line-height: 1;
+    color: var(--gold);
+  }
+
+  /* Card body */
+  .pkg-body {
+    padding: 26px 24px 24px;
+    display: flex; flex-direction: column;
+    flex-grow: 1;
+  }
+  .pkg-desc {
+    font-family: var(--sans); font-weight: 300;
+    font-size: 14px; line-height: 1.6;
+    color: var(--text);
+    min-height: 64px;
+  }
+  .pkg-price-row {
+    margin-top: 22px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  }
+  .pkg-price {
+    display: inline-flex; align-items: baseline; gap: 6px;
+    font-family: var(--serif); font-weight: 300;
+    color: var(--white); line-height: 1;
+  }
+  .pkg-price .from {
+    font-family: var(--sans); font-weight: 400;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--muted); margin-right: 2px;
+  }
+  .pkg-price .amount { font-size: clamp(34px, 3.4vw, 42px); letter-spacing: -0.005em; }
+  .pkg-price .unit { font-size: 17px; color: var(--white); margin-left: 2px; }
+  .pkg-price .per { font-size: 15px; color: var(--text); }
+  .pkg-vat {
+    font-family: var(--sans); font-weight: 300; font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pkg-price.on-request .amount {
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-style: italic; font-weight: 300;
+  }
+
+  /* ============== ACCORDION ============== */
+  .feat-list {
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 22px;
+    display: flex; flex-direction: column;
+    flex-grow: 1;
+  }
+  .feat-item { border-bottom: 1px solid var(--border); }
+  .feat-item:last-child { border-bottom: 0; }
+  .feat-btn {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    padding: 13px 0;
+    cursor: pointer;
+    text-align: left;
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--sans); font-weight: 400; font-size: 13.5px;
+    color: var(--white);
+    line-height: 1.4;
+    transition: color .25s var(--ease);
+  }
+  .feat-btn:hover { color: var(--gold-light); }
+  .feat-label { flex-grow: 1; }
+  .feat-plus {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px;
+    color: var(--gold);
+    font-size: 20px; font-weight: 300; line-height: 1;
+    flex-shrink: 0;
+    transition: transform .35s cubic-bezier(.4,0,.2,1), color .25s var(--ease);
+  }
+  .feat-btn[aria-expanded="true"] .feat-plus {
+    transform: rotate(45deg);
+    color: var(--gold-light);
+  }
+  .feat-btn:hover .feat-plus { color: var(--gold-light); }
+  .feat-body {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, opacity .25s ease;
+  }
+  .feat-btn[aria-expanded="true"] + .feat-body { opacity: 1; }
+  .feat-body-inner {
+    padding: 0 0 16px 0;
+    font-family: var(--sans); font-weight: 300; font-size: 13.5px;
+    line-height: 1.7; color: var(--muted);
+  }
+  .feat-body-inner strong { color: var(--white); font-weight: 500; }
+  .feat-body-inner em { font-family: var(--serif); font-style: italic; color: var(--gold-light); }
+
+  /* Card CTA */
+  .pkg-cta {
+    margin-top: auto;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 22px;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+    font-family: var(--sans); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+  }
+  .pkg-cta:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+  .pkg-card.featured .pkg-cta {
+    background: var(--gold); color: var(--bg); border-color: var(--gold);
+  }
+  .pkg-card.featured .pkg-cta:hover { background: var(--gold-light); border-color: var(--gold-light); }
+  .pkg-cta .arrow { transition: transform .25s var(--ease); }
+  .pkg-cta:hover .arrow { transform: translateX(3px); }
+
+  .size-note {
+    margin-top: 40px;
+    text-align: center;
+    font-family: var(--sans); font-weight: 400; font-size: 12px;
+    letter-spacing: 0.04em; line-height: 1.65;
+    color: var(--muted);
+    max-width: 760px; margin-left: auto; margin-right: auto;
+  }
+  .size-note .accent { color: var(--gold); font-weight: 500; }
+
+  /* ============== TILLEGG ============== */
+  .addon-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .addon {
+    background: var(--card-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .addon:hover { border-color: rgba(184,150,90,.35); transform: translateY(-2px); }
+  .addon-name {
+    font-family: var(--serif); font-weight: 400; font-size: 24px;
+    color: var(--white); letter-spacing: 0; line-height: 1.1;
+  }
+  .addon-price {
+    font-family: var(--serif); font-weight: 400; font-size: 24px;
+    color: var(--gold); letter-spacing: -0.005em;
+  }
+  .addon-price .vat {
+    font-family: var(--sans); font-weight: 300; font-size: 10px;
+    letter-spacing: 0.22em; color: var(--muted); text-transform: uppercase;
+    margin-left: 4px;
+  }
+  .addon-price.multi { display: flex; flex-direction: column; gap: 4px; }
+  .addon-price.multi span.row {
+    display: flex; align-items: baseline; gap: 8px;
+    font-size: 18px;
+  }
+  .addon-price.multi span.row .qty {
+    font-family: var(--sans); font-weight: 400; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .addon ul.feat-mini { list-style: none; margin-top: 4px; display: flex; flex-direction: column; gap: 8px; }
+  .addon ul.feat-mini li {
+    font-family: var(--sans); font-weight: 300; font-size: 13px;
+    color: var(--text); line-height: 1.55;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .addon ul.feat-mini li::before {
+    content: "·"; color: var(--gold);
+    font-size: 18px; line-height: 0; transform: translateY(-2px);
+  }
+  @media (max-width: 980px) { .addon-grid { grid-template-columns: 1fr; } }
+
+  /* ============== PROCESS ============== */
+  .process {
+    padding: 120px 0;
+    background: linear-gradient(180deg, #060810 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--divider);
+  }
+  .steps-ill {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    position: relative;
+    margin-top: 8px;
+  }
+  .step-ill { text-align: left; padding: 0 8px; position: relative; }
+  .step-ill:not(:last-child)::after {
+    content: ""; position: absolute;
+    right: -22px; top: 60px;
+    width: 12px; height: 1px;
+    background: var(--gold); opacity: .3;
+  }
+  .step-ill .ill {
+    width: 120px; height: 120px;
+    border: 1px solid var(--gold-line);
+    border-radius: 12px;
+    display: grid; place-items: center;
+    background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+    color: var(--gold);
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-ill .ill::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(184,150,90,.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .step-ill .ill svg {
+    width: 60px; height: 60px;
+    fill: none; stroke: currentColor; stroke-width: 1.6;
+    stroke-linecap: round; stroke-linejoin: round;
+    position: relative; z-index: 1;
+  }
+  .step-ill .step-num {
+    font-family: var(--serif); font-weight: 400;
+    font-size: 28px; color: var(--gold); line-height: 1;
+    margin-bottom: 12px;
+  }
+  .step-ill .step-title {
+    font-family: var(--serif); font-weight: 400; font-size: 24px;
+    color: var(--white); letter-spacing: 0.01em; line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .step-ill .step-desc {
+    font-family: var(--sans); font-weight: 300; font-size: 14px;
+    line-height: 1.7; color: #A4A8B0;
+    max-width: 240px;
+  }
+  @media (max-width: 980px) {
+    .steps-ill { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .step-ill:not(:last-child)::after { display: none; }
+  }
+  @media (max-width: 560px) { .steps-ill { grid-template-columns: 1fr; } }
+
+  /* ============== STATS / PROOF ============== */
+  .proof {
+    padding: 120px 0;
+    background: linear-gradient(180deg, var(--bg) 0%, #060810 100%);
+    border-bottom: 1px solid var(--divider);
+  }
+  .proof-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
+    margin-top: 40px;
+  }
+  .proof-item {
+    padding: 36px 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-align: left;
+  }
+  .proof-item .stat {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(48px, 5vw, 72px);
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.005em;
+    margin-bottom: 18px;
+  }
+  .proof-item .ttl {
+    font-family: var(--serif); font-weight: 400; font-size: 22px;
+    color: var(--white); letter-spacing: 0.01em; line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .proof-item p {
+    font-family: var(--sans); font-weight: 300; font-size: 14px;
+    line-height: 1.7; color: var(--text);
+  }
+  @media (max-width: 980px) { .proof-grid { grid-template-columns: 1fr; } }
+
+  /* ============== CONTACT FORM ============== */
+  .contact {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--divider);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: ""; position: absolute; left: -10%; top: -20%;
+    width: 55%; height: 100%;
+    background: radial-gradient(closest-side, rgba(184,150,90,.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 64px;
+    align-items: start;
+    position: relative;
+  }
+  .contact-copy { display: flex; flex-direction: column; gap: 22px; padding-top: 6px; }
+  .contact-copy .eyebrow { margin-bottom: 4px; }
+  .contact-copy h2 { margin-bottom: 0; }
+  .contact-copy p {
+    font-family: var(--sans); font-weight: 300;
+    font-size: 16px; line-height: 1.65;
+    color: var(--muted);
+  }
+  .contact-copy .meta {
+    margin-top: 14px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    font-family: var(--sans); font-weight: 400;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .contact-form {
+    background: linear-gradient(180deg, #14192A 0%, #0A0D14 100%);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 44px 40px;
+    position: relative;
+  }
+  .contact-form::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+  }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cf-field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .cf-field label {
+    font-family: var(--sans); font-weight: 400; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  }
+  .cf-field input, .cf-field select, .cf-field textarea {
+    background: var(--card-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--white);
+    font-family: var(--sans); font-weight: 300; font-size: 14px;
+    padding: 0 16px;
+    height: 52px;
+    transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+    appearance: none; -webkit-appearance: none;
+    width: 100%;
+  }
+  .cf-field select {
+    background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23B8965A' d='M6 8 0 0h12z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 42px;
+  }
+  .cf-field select option { background: var(--card-2); color: var(--white); }
+  .cf-field textarea {
+    height: auto;
+    padding: 16px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .cf-field input:focus, .cf-field select:focus, .cf-field textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,150,90,.15);
+  }
+  .cf-field input::placeholder, .cf-field textarea::placeholder { color: rgba(255,255,255,.25); }
+  .cf-submit {
+    width: 100%; margin-top: 8px;
+    padding: 17px 24px;
+    background: var(--gold);
+    color: var(--bg);
+    border: 0; border-radius: 4px;
+    font-family: var(--sans); font-weight: 500; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .25s var(--ease);
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .cf-submit:hover { background: var(--gold-light); }
+  @media (max-width: 980px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-form { padding: 32px 24px; }
+    .cf-row { grid-template-columns: 1fr; }
+  }
+
+  /* ============== FOOTER NOTE ============== */
+  .footnote-band {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--divider);
+    text-align: center;
+  }
+  .footnote-band p {
+    max-width: 700px; margin: 0 auto;
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    color: var(--muted);
+    font-size: 15px; line-height: 1.7;
+    letter-spacing: 0.005em;
+  }
+
+  /* ============== FOOTER ============== */
+  footer { background: var(--bg); padding: 80px 0 36px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer-brand .mark {
+    font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
+    font-size: clamp(32px, 4vw, 44px);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--white); line-height: 1;
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  }
+  .footer-brand .mark .second {
+    font-family: 'Inter', system-ui, sans-serif; font-weight: 400;
+    font-size: clamp(14px, 1.4vw, 16px);
+    letter-spacing: 0.32em;
+    color: var(--gold);
+  }
+  .footer-brand .tagline {
+    margin-top: 18px;
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    color: var(--gold-light);
+    font-size: clamp(20px, 1.8vw, 26px);
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    max-width: 460px;
+  }
+  .footer-col h4 {
+    font-family: var(--sans); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  .footer-col a, .footer-col p {
+    font-family: var(--sans); font-weight: 300; font-size: 14px;
+    color: var(--text); line-height: 1.9;
+    display: block;
+    transition: color .25s var(--ease);
+  }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center; gap: 18px;
+    font-family: var(--sans); font-weight: 400; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 880px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- =================== NAV =================== -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#" aria-label="Lumora Media">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="50,14 88,80 12,80"/>
+            <line x1="0" y1="47" x2="31" y2="47"/>
+            <line x1="69" y1="47" x2="100" y2="22"/>
+            <line x1="69" y1="47" x2="100" y2="47" opacity="0.65"/>
+            <line x1="69" y1="47" x2="100" y2="72" opacity="0.4"/>
+          </g>
+        </svg>
+        <span class="name">Lumora<span class="second">Media</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Primær">
+        <a href="#tilbyr">Hva vi tilbyr</a>
+        <a href="#pakker">Pakker</a>
+        <a href="#monthly">Månedlig</a>
+        <a href="#tillegg">Tillegg</a>
+        <a href="#process">Prosess</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="nav-cta" href="mailto:booking@lumoramedia.no">Book nå</a>
+    </div>
+  </header>
+
+  <!-- =================== HERO =================== -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-fade" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <span class="eyebrow">Premium eiendomsinnhold · Oslo</span>
+        <h1>Innhold som <span class="italic">selger</span><br/>boliger raskere.</h1>
+        <p class="hero-sub">Premium foto, video, drone og twilight-innhold for meglerkontorer i Oslo og Norge. Alt levert senest 48 timer.</p>
+        <div class="hero-cta-row">
+          <a class="btn-gold" href="#pakker">Se pakker <span>→</span></a>
+          <a class="btn-ghost" href="#kontakt">Snakk med oss <span>→</span></a>
+        </div>
+
+        <!-- Trust bar -->
+        <div class="trust" aria-label="Hva vi tilbyr">
+          <div class="trust-item">
+            <span class="trust-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 10,22 20,10 13,10 14,2"/></svg>
+            </span>
+            <span class="trust-text">Foto innen 24 timer · Video innen 48 timer</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M9 7l1.5-2h3L15 7"/></svg>
+            </span>
+            <span class="trust-text">Foto · Video · Drone</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </span>
+            <span class="trust-text">Studio basert i Oslo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== INTRO BAND: Hva vi tilbyr =================== -->
+  <section class="intro-band" id="tilbyr">
+    <div class="container">
+      <span class="eyebrow">Hva vi tilbyr</span>
+      <h2>Det beste innholdet, til <span class="italic">konkurransedyktig pris.</span></h2>
+      <p>Meglere og meglerkontorer over hele Norge stoler på oss for å produsere innhold som selger boliger raskere. Premium kvalitet, rask levering, og en ærlig prisstruktur uten skjulte kostnader.</p>
+    </div>
+  </section>
+
+  <!-- =================== PAKKER =================== -->
+  <section class="section" id="pakker">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Pakker</span>
+        <h2 class="h-section">Sett det sammen. <span class="italic">Spar tid.</span></h2>
+        <p>Tre pakker bygget for meglere, pluss en skreddersydd. Velg det listingen trenger.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- ━━━━ BASIS ━━━━ -->
+        <article class="pkg-card" data-card>
+          <div class="pkg-header">
+            <div class="pkg-name">Basis</div>
+            <div class="pkg-tag"><span class="icon">⊞</span>3 tjenester</div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">Foto, drone og signature listing video. Alt det listingen trenger fra dag én.</p>
+            <div class="pkg-price-row">
+              <span class="pkg-price">
+                <span class="from">Fra</span>
+                <span class="amount">6 950</span>
+                <span class="unit">kr</span>
+              </span>
+              <span class="pkg-vat">eks. mva</span>
+            </div>
+
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Profesjonell MLS-fotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler. Fargegradert og retusjert, hvert eneste bilde.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Dronefotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen rundt eiendommen: spesielt effektivt for store tomter, utsikt, sjøtomter og nabolagskontekst. Lisensiert droneoperatør (EASA A1/A3).</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Signature Listing Video</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Optimalisert for kortformat vertikale plattformer, eller horisontal hvis ønskelig. Inkluderer dronevideo i klippet for ekstra produksjonsverdi og polish.</div></div>
+              </li>
+            </ul>
+
+            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Pakke%20Basis">Utforsk pakke <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- ━━━━ STANDARD ━━━━ -->
+        <article class="pkg-card" data-card>
+          <div class="pkg-header">
+            <div class="pkg-name">Standard</div>
+            <div class="pkg-tag"><span class="icon">⊞</span>4 tjenester</div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">Foto, drone, twilight og Platinum Reel med megler on-camera. For meglere som vil skille seg ut.</p>
+            <div class="pkg-price-row">
+              <span class="pkg-price">
+                <span class="from">Fra</span>
+                <span class="amount">9 750</span>
+                <span class="unit">kr</span>
+              </span>
+              <span class="pkg-vat">eks. mva</span>
+            </div>
+
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Profesjonell MLS-fotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Dronefotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen: spesielt effektivt for store tomter, utsikt, sjøtomter og nabolagskontekst.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Twilight Foto</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Twilight-fotografering fanger eiendommen i den korte tidsperioden etter solnedgang eller før soloppgang («blue hour» / «golden hour»), og blander naturlige himmelfarger med kunstig interiør- og eksteriørbelysning til et dramatisk, innbydende uttrykk. <strong>Boliger med twilight-bilder som hovedbilde får opptil 76% flere visninger online.</strong></div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Platinum Reel</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Kort video for Instagram, TikTok og YouTube Shorts der megleren presenterer eiendommen. Profesjonell fargegradering og caption-overlays. Bygger tillit og driver leads.</div></div>
+              </li>
+            </ul>
+
+            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Pakke%20Standard">Utforsk pakke <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- ━━━━ PREMIUM (featured) ━━━━ -->
+        <article class="pkg-card featured" data-card>
+          <span class="featured-ribbon">Mest populær</span>
+          <div class="pkg-header">
+            <div class="pkg-name">Premium</div>
+            <div class="pkg-tag"><span class="icon">⊞</span>7 tjenester</div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">Den komplette mediepakken, for eiendommer som fortjener å bli vist på beste måte på alle plattformer.</p>
+            <div class="pkg-price-row">
+              <span class="pkg-price">
+                <span class="amount">11 550</span>
+                <span class="unit">kr</span>
+              </span>
+              <span class="pkg-vat">eks. mva</span>
+            </div>
+
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Profesjonell MLS-fotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Dronefotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen: spesielt effektivt for store tomter, utsikt, sjøtomter og nabolagskontekst.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Dronevideo</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Cinematisk luftvideo for annonser og Instagram/TikTok/YouTube Shorts. Lifestyle-shots og merkevareløft, fullt inkludert.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Twilight Foto</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Twilight-fotografering fanger eiendommen i den korte tidsperioden etter solnedgang eller før soloppgang («blue hour» / «golden hour»). <strong>Boliger med twilight-bilder som hovedbilde får opptil 76% flere visninger online.</strong></div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Twilight Video</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Cinematisk video tatt ved magisk lys (blue hour / golden hour). Får boligen til å føles dramatisk, eksklusiv og umiddelbart mer attraktiv online.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Platinum Reel</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Kort video for Instagram, TikTok og YouTube Shorts der megleren presenterer eiendommen. Profesjonell fargegradering og caption-overlays. Bygger tillit og driver leads.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Teaser Video</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Kort, high-impact klipp laget for Reels, TikTok og Shorts. Bygger forventning, driver klikk og skaper umiddelbar momentum i det annonsen går live.</div></div>
+              </li>
+            </ul>
+
+            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Pakke%20Premium">Utforsk pakke <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- ━━━━ CUSTOM ━━━━ -->
+        <article class="pkg-card" data-card>
+          <div class="pkg-header">
+            <div class="pkg-name">Custom</div>
+            <div class="pkg-tag"><span class="icon">⊞</span>Skreddersydd</div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">Bygg din perfekte pakke. Samme tjenester som Premium, tilpasset ditt prosjekt og dine kanaler.</p>
+            <div class="pkg-price-row">
+              <span class="pkg-price on-request">
+                <span class="amount">Pris på forespørsel</span>
+              </span>
+            </div>
+
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Profesjonell MLS-fotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Dronefotografering</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen rundt eiendommen.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Dronevideo</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Cinematisk luftvideo for annonser og sosiale medier: lifestyle-shots og merkevareløft.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Twilight Foto</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Twilight-fotografering ved blue hour eller golden hour. Får opptil 76% flere visninger som hovedbilde online.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Twilight Video</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Cinematisk video ved magisk lys. Dramatisk og eksklusiv tone.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Platinum Reel</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Megleren on-camera. Kort video for Instagram, TikTok og Shorts med profesjonell fargegradering og captions.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Teaser Video</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Kort, high-impact klipp for Reels og TikTok. Bygger hype og driver klikk når annonsen går live.</div></div>
+              </li>
+            </ul>
+
+            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Custom%20pakke">Ta kontakt <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="size-note">
+        <strong class="accent">Standardpriser for boliger under 100 kvm.</strong> Større eiendommer med mer innhold krever ekstra tid og forberedelse. Pris vurderes etter en kort befaring.
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== MÅNEDLIGE PAKKER =================== -->
+  <section class="section" id="monthly">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Månedlig</span>
+        <h2 class="h-section">Månedlige <span class="italic">pakker.</span></h2>
+        <p>For meglere som vil bygge autoritet og tilstedeværelse. Konsistent, måned etter måned.</p>
+      </div>
+
+      <div class="pricing-grid two">
+
+        <!-- ━━━━ VEKST ━━━━ -->
+        <article class="pkg-card" data-card>
+          <div class="pkg-header">
+            <div class="pkg-name">Vekst</div>
+            <div class="pkg-tag"><span class="icon">⊞</span>6 tjenester</div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">4 strategiske videoer per måned fra 2–3 lokasjoner. Bygd for å vokse din merkevare og synlighet på sosiale medier.</p>
+            <div class="pkg-price-row">
+              <span class="pkg-price">
+                <span class="amount">15 950</span>
+                <span class="unit">kr</span>
+                <span class="per">/ mnd</span>
+              </span>
+              <span class="pkg-vat">eks. mva</span>
+            </div>
+
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">4 high-performance videoer per måned</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">En strategisk miks av merkevareautoritet, historiefortelling, scroll-stoppende innhold og fellesskaps-drevne videoer. Designet for å bygge tillit og synlighet med hver publisering.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">2–3 filming-lokasjoner per måned</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Vi kommer til deg: kontoret ditt, listingene dine, byen din. Opptil 3 ulike lokasjoner dekket hver måned.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">MLS-fotografering inkludert per lokasjon</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Profesjonell finn.no-fotografering er inkludert for hver av de 2–3 lokasjonene per måned. Ingen ekstra kostnad.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Designet for sosiale plattformer</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hver video er optimalisert for kortformat: Instagram Reels, TikTok og YouTube Shorts. Bygget for å prestere, ikke bare filmet og levert.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Done-for-you scripting &amp; kreativ retning</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Du trenger aldri å lure på hva du skal si. Hvert opptak kommer med tydelig on-brand script og dokumenterte video-konsepter. Vi tar hånd om idéene. Du møter bare opp.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">15% rabatt på alle tilleggstjenester</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Preferred client pricing, også på ekstra fotografering, twilight-shoots, dronevideo eller andre tillegg du måtte bestille utenfor pakken.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Månedlig strategisk samtale</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Fokusert månedlig samtale for å gjennomgå hva som fungerer, planlegge neste måneds innhold, og sørge for at hver video drar i riktig retning for merkevaren din.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">1-måneds binding</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Start med én måned. Ingen langtidsbinding påkrevd. Se resultatene først.</div></div>
+              </li>
+            </ul>
+
+            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=M%C3%A5nedlig%20%E2%80%94%20Vekst">Utforsk pakke <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <!-- ━━━━ AUTORITET (featured) ━━━━ -->
+        <article class="pkg-card featured" data-card>
+          <span class="featured-ribbon">Mest populær</span>
+          <div class="pkg-header">
+            <div class="pkg-name">Autoritet</div>
+            <div class="pkg-tag"><span class="icon">⊞</span>8 tjenester</div>
+          </div>
+          <div class="pkg-body">
+            <p class="pkg-desc">5 strategiske videoer per måned fra 4 lokasjoner, prioritert booking og full kreativ retning. For meglere som vil dominere markedet.</p>
+            <div class="pkg-price-row">
+              <span class="pkg-price">
+                <span class="amount">18 950</span>
+                <span class="unit">kr</span>
+                <span class="per">/ mnd</span>
+              </span>
+              <span class="pkg-vat">eks. mva</span>
+            </div>
+
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">5 high-performance videoer per måned</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Mer volum, mer synlighet. En strategisk miks av merkevareautoritet, historiefortelling, scroll-stoppende hooks og fellesskaps-drevet innhold. Designet for å gjøre deg til den mest gjenkjennelige megleren i ditt område.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">4 filming-lokasjoner per måned</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Fleksibilitet til å filme der merkevaren din lever: på dine listinger, kontoret ditt, eller ute i Oslo. 4 lokasjoner dekket hver måned.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">MLS-fotografering inkludert per lokasjon</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Profesjonell finn.no-fotografering er inkludert for hver av de 4 lokasjonene per måned. Du får komplett dekning, foto og video, uten ekstra kostnad.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Designet for sosiale plattformer</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hver video er optimalisert for Instagram Reels, TikTok og YouTube Shorts. Hook, hold, konverter. Hver eneste gang.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Done-for-you scripting &amp; kreativ retning</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Fullt kreativt eierskap. Vi utvikler hvert konsept, skriver hvert script, og leder hvert opptak. Du trenger aldri å lure på hva du skal si eller hvordan du skal si det.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">20% rabatt på alle tilleggstjenester</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Preferred client pricing, den dypeste rabatten vi tilbyr, på alle ekstra shoots, videoer eller tillegg du måtte bestille.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Prioritert booking</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Dine shoots bekreftes alltid først. Ingen venteliste, ingen forsinkelser. Du går først i køen.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Månedlig strategisk samtale</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Fokusert månedlig samtale for å gjennomgå hva som fungerer, planlegge neste måneds innhold, og sørge for at hver video bygger merkevaren din i riktig retning.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">1-måneds binding</span>
+                  <span class="feat-plus">+</span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Start med én måned. Ingen langtidsbinding påkrevd. Se resultatene først.</div></div>
+              </li>
+            </ul>
+
+            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=M%C3%A5nedlig%20%E2%80%94%20Autoritet">Utforsk pakke <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== TILLEGG =================== -->
+  <section class="section" id="tillegg">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Tillegg</span>
+        <h2 class="h-section">Legg til <span class="italic">det du trenger.</span></h2>
+        <p>Alle tillegg kan kombineres med pakkene eller bestilles separat.</p>
+      </div>
+
+      <div class="addon-grid">
+
+        <article class="addon">
+          <div class="addon-name">Twilight-innhold</div>
+          <div class="addon-price">
+            3 650 kr
+            <span class="vat">eks. mva</span>
+          </div>
+          <ul class="feat-mini">
+            <li>Stemningsfulle solnedgangsbilder</li>
+            <li>+76% visninger som hovedbilde</li>
+            <li>Skaper emosjonell appell og premium følelse</li>
+          </ul>
+        </article>
+
+        <article class="addon">
+          <div class="addon-name">Dronefoto / video ekstra</div>
+          <div class="addon-price multi">
+            <span class="row">750 kr <span class="qty">for 1 bilde</span></span>
+            <span class="row">1 950 kr <span class="qty">for 5–10 bilder</span></span>
+            <span class="row">2 950 kr <span class="qty">for vertikal / horisontal video</span></span>
+            <span class="vat" style="margin-top:4px;">eks. mva</span>
+          </div>
+          <ul class="feat-mini">
+            <li>Lisensiert droneoperatør (EASA A1/A3)</li>
+          </ul>
+        </article>
+
+        <article class="addon">
+          <div class="addon-name">Næringsfoto</div>
+          <div class="addon-price">
+            Fra 6 950 kr
+            <span class="vat">eks. mva</span>
+          </div>
+          <ul class="feat-mini">
+            <li>Kontor, fasade, industri</li>
+            <li>Dronefoto og dronevideo inkludert</li>
+            <li>Tilpasset størrelse</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== PROCESS =================== -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Slik jobber vi</span>
+        <h2 class="h-section">Fra booking til <span class="italic">levering,</span><br/>i fire steg.</h2>
+        <p>Fra brief til ferdig fil: en gjennomtenkt prosess der hvert prosjekt får tid, fokus og kvaliteten det fortjener.</p>
+      </div>
+
+      <div class="steps-ill">
+
+        <div class="step-ill">
+          <div class="ill" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <rect x="8" y="14" width="48" height="42" rx="3"/>
+              <line x1="8" y1="24" x2="56" y2="24"/>
+              <line x1="20" y1="8" x2="20" y2="18"/>
+              <line x1="44" y1="8" x2="44" y2="18"/>
+              <circle cx="32" cy="40" r="6" fill="currentColor" fill-opacity="0.18"/>
+              <line x1="32" y1="36" x2="32" y2="44"/>
+              <line x1="28" y1="40" x2="36" y2="40"/>
+            </svg>
+          </div>
+          <div class="step-num">1.</div>
+          <div class="step-title">Booking</div>
+          <div class="step-desc">Velg pakke og dato. Vi bekrefter på e-post.</div>
+        </div>
+
+        <div class="step-ill">
+          <div class="ill" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path d="M14 8 L42 8 L52 18 L52 56 L14 56 Z"/>
+              <polyline points="42,8 42,18 52,18"/>
+              <line x1="20" y1="28" x2="44" y2="28" stroke-width="1.2"/>
+              <line x1="20" y1="34" x2="44" y2="34" stroke-width="1.2"/>
+              <line x1="20" y1="40" x2="36" y2="40" stroke-width="1.2"/>
+              <line x1="42" y1="48" x2="56" y2="34"/>
+              <polygon points="56,34 58,32 60,34 58,36" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="step-num">2.</div>
+          <div class="step-title">Brief</div>
+          <div class="step-desc">Kort gjennomgang: vi blir enige om historien, vinklene og lyset.</div>
+        </div>
+
+        <div class="step-ill">
+          <div class="ill" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <rect x="8" y="20" width="48" height="32" rx="3"/>
+              <path d="M22 20 L24 14 L40 14 L42 20"/>
+              <circle cx="32" cy="36" r="11"/>
+              <circle cx="32" cy="36" r="6"/>
+              <circle cx="32" cy="36" r="1.6" fill="currentColor"/>
+              <circle cx="14" cy="26" r="1.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="step-num">3.</div>
+          <div class="step-title">Opptak</div>
+          <div class="step-desc">Én dag på stedet. Foto, film og drone, fanget av én operatør.</div>
+        </div>
+
+        <div class="step-ill">
+          <div class="ill" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <rect x="6" y="20" width="40" height="28" rx="2"/>
+              <polyline points="6,20 26,36 46,20"/>
+              <path d="M36 14 L58 6 L52 28 L46 22 L36 14 Z"/>
+              <line x1="36" y1="14" x2="46" y2="22" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="step-num">4.</div>
+          <div class="step-title">Levering</div>
+          <div class="step-desc">Endelige filer i innboksen. Bilder klare for finn.no, 4K-video og sosiale klipp.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- =================== PROOF (Hvorfor velge oss) =================== -->
+  <section class="proof" id="proof">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Hvorfor velge oss?</span>
+        <h2 class="h-section">Bevisene står for <span class="italic">seg selv.</span></h2>
+        <p>Hvorfor meglere som investerer i innhold og tilstedeværelse på sosiale medier vinner, og selger raskere.</p>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-item">
+          <div class="stat">52%</div>
+          <div class="ttl">Sosiale medier er meglerens #1 verktøy</div>
+          <p>Ifølge NAR sin teknologirapport 2024 rangerer 52% av meglere sosiale medier som sin viktigste kilde til kvalifiserte leads, foran CRM, finn.no og alt annet.</p>
+        </div>
+        <div class="proof-item">
+          <div class="stat">15–20%</div>
+          <div class="ttl">Instagram-aktive meglere selger mer</div>
+          <p>En studie publisert i Journal of Promotion Management fant at meglere med aktiv Instagram-tilstedeværelse hadde 15–20% høyere sannsynlighet for å øke salget sitt år over år, sterkest på selgersiden.</p>
+        </div>
+        <div class="proof-item">
+          <div class="stat">32%</div>
+          <div class="ttl">Profesjonelt innhold selger raskere</div>
+          <p>Boliger markedsført med profesjonelt innhold selges 32% raskere enn sammenlignbare boliger, og oppnår opptil 120 000 kr mer i salgspris, ifølge en studie fra Redfin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== CONTACT FORM =================== -->
+  <section class="contact" id="kontakt">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="contact-copy">
+          <span class="eyebrow">Kontakt</span>
+          <h2 class="h-section">La oss snakke om ditt <span class="italic">neste prosjekt.</span></h2>
+          <p>Send en kort beskrivelse av eiendommen og hva du trenger. Vi svarer vanligvis innen 3 timer på hverdager.</p>
+          <div class="meta">Lumora Media · Oslo · contact@lumoramedia.no</div>
+        </div>
+
+        <form class="contact-form" action="mailto:contact@lumoramedia.no" method="post" enctype="text/plain">
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="cf-name">Navn *</label>
+              <input id="cf-name" name="name" type="text" required placeholder="Ditt navn" />
+            </div>
+            <div class="cf-field">
+              <label for="cf-email">E-post *</label>
+              <input id="cf-email" name="email" type="email" required placeholder="din@epost.no" />
+            </div>
+          </div>
+          <div class="cf-row">
+            <div class="cf-field">
+              <label for="cf-phone">Telefon</label>
+              <input id="cf-phone" name="phone" type="tel" placeholder="+47 ..." />
+            </div>
+            <div class="cf-field">
+              <label for="cf-company">Selskap / Meglerkontor</label>
+              <input id="cf-company" name="company" type="text" placeholder="Meglerkontor AS" />
+            </div>
+          </div>
+          <div class="cf-field">
+            <label for="cf-service">Tjeneste</label>
+            <select id="cf-service" name="service">
+              <option>Basis-pakke</option>
+              <option>Standard-pakke</option>
+              <option>Premium-pakke</option>
+              <option>Custom-pakke</option>
+              <option>Månedlig pakke: Vekst</option>
+              <option>Månedlig pakke: Autoritet</option>
+              <option>Twilight-innhold</option>
+              <option>Dronefoto / video</option>
+              <option>Næringsfoto</option>
+              <option>Annet</option>
+            </select>
+          </div>
+          <div class="cf-field">
+            <label for="cf-message">Melding</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Fortell om eiendommen og hva du trenger."></textarea>
+          </div>
+          <button class="cf-submit" type="submit">Send melding <span>→</span></button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER NOTE =================== -->
+  <section class="footnote-band">
+    <div class="container">
+      <p>Gratis i Oslo. Utenfor Oslo faktureres reiseutgifter.<br/>Alle priser er eks. mva.</p>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <div class="mark"><span>Lumora</span><span class="second">Media</span></div>
+          <div class="tagline">«Vi belyser din eiendom.»</div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigasjon</h4>
+          <a href="#pakker">Pakker</a>
+          <a href="#tillegg">Tillegg</a>
+          <a href="#process">Prosess</a>
+          <a href="#monthly">Månedlige pakker</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <a href="mailto:contact@lumoramedia.no">contact@lumoramedia.no</a>
+          <p>Oslo, Norge</p>
+          <p style="font-style:italic; color:var(--gold-light); margin-top:6px;">Vi svarer vanligvis innen 3 timer</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 · Lumora Media · Oslo</div>
+        <div>Alle priser er eks. mva.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============ ACCORDION ============
+    // Each card has its own set of feature items.
+    // Only ONE item can be open per card at any time.
+    document.querySelectorAll('[data-card]').forEach(card => {
+      const items = Array.from(card.querySelectorAll('.feat-item'));
+
+      const openItem = (item) => {
+        const btn  = item.querySelector('.feat-btn');
+        const body = item.querySelector('.feat-body');
+        const inner = body.querySelector('.feat-body-inner');
+        if (!btn || !body || !inner) return;
+        btn.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = inner.offsetHeight + 'px';
+        body.style.opacity = '1';
+      };
+      const closeItem = (item) => {
+        const btn  = item.querySelector('.feat-btn');
+        const body = item.querySelector('.feat-body');
+        if (!btn || !body) return;
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.offsetHeight; // force reflow
+        body.style.maxHeight = '0px';
+        body.style.opacity = '0';
+        btn.setAttribute('aria-expanded', 'false');
+      };
+
+      items.forEach(item => {
+        const btn = item.querySelector('.feat-btn');
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+          // Close any other open item in this card
+          items.forEach(other => {
+            if (other === item) return;
+            const otherBtn = other.querySelector('.feat-btn');
+            if (otherBtn && otherBtn.getAttribute('aria-expanded') === 'true') {
+              closeItem(other);
+            }
+          });
+
+          if (isOpen) closeItem(item);
+          else openItem(item);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
