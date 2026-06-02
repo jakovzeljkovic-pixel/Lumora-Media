@@ -355,7 +355,7 @@
     padding-bottom: 20px;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center;
   }
   .pkg-price {
     display: inline-flex; align-items: baseline; gap: 6px;
@@ -371,6 +371,7 @@
   .pkg-price .unit { font-size: 17px; color: var(--white); margin-left: 2px; }
   .pkg-price .per { font-size: 15px; color: var(--text); }
   .pkg-vat {
+    white-space: nowrap;
     font-family: var(--sans); font-weight: 300; font-size: 11px;
     letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--muted);
@@ -1045,6 +1046,7 @@
             <p class="pkg-desc">Den komplette mediepakken, for eiendommer som fortjener å bli vist på beste måte på alle plattformer.</p>
             <div class="pkg-price-row">
               <span class="pkg-price">
+                <span class="from">Fra</span>
                 <span class="amount">11 550</span>
                 <span class="unit">kr</span>
               </span>
@@ -1206,6 +1208,7 @@
             <p class="pkg-desc">4 strategiske videoer per måned fra 2–3 lokasjoner. Bygd for å vokse din merkevare og synlighet på sosiale medier.</p>
             <div class="pkg-price-row">
               <span class="pkg-price">
+                <span class="from">Fra</span>
                 <span class="amount">15 950</span>
                 <span class="unit">kr</span>
                 <span class="per">/ mnd</span>
@@ -1287,6 +1290,7 @@
             <p class="pkg-desc">5 strategiske videoer per måned fra 4 lokasjoner, prioritert booking og full kreativ retning. For meglere som vil dominere markedet.</p>
             <div class="pkg-price-row">
               <span class="pkg-price">
+                <span class="from">Fra</span>
                 <span class="amount">18 950</span>
                 <span class="unit">kr</span>
                 <span class="per">/ mnd</span>
