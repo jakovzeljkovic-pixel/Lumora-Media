@@ -780,7 +780,73 @@
     .footer-grid { grid-template-columns: 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
+
+  /* ============ Contact form success state ============ */
+  .cf-success { display: none; text-align: center; padding: 28px 12px 10px; }
+  .cf-success.show { display: block; }
+  .cf-check { width: 66px; height: 66px; display: block; margin: 0 auto 22px; }
+  .cf-check-circle, .cf-check-mark { fill: none; stroke: var(--gold); }
+  .cf-check-circle { stroke-width: 2.5; stroke-dasharray: 151; stroke-dashoffset: 0; }
+  .cf-check-mark { stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 0; }
+  .cf-success h3 {
+    font-family: var(--sans); font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 30px); color: var(--white);
+    letter-spacing: 0.01em; margin-bottom: 10px;
+  }
+  .cf-success p {
+    font-family: var(--sans); font-weight: 300; font-size: 15px;
+    color: var(--text); line-height: 1.7; max-width: 360px; margin: 0 auto 26px;
+  }
+  .cf-again {
+    padding: 12px 26px; font-family: var(--sans); font-weight: 500; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--bg);
+    background: var(--gold); border: 0; border-radius: 4px; cursor: pointer;
+    transition: background .25s var(--ease);
+  }
+  .cf-again:hover { background: var(--gold-light); }
+  @media (prefers-reduced-motion: no-preference) {
+    .cf-success .cf-check-circle { stroke-dashoffset: 151; }
+    .cf-success .cf-check-mark { stroke-dashoffset: 40; }
+    .cf-success.show { animation: cfPop .5s var(--ease); }
+    .cf-success.show .cf-check-circle { animation: cfDraw .55s var(--ease) forwards; }
+    .cf-success.show .cf-check-mark { animation: cfDraw .3s var(--ease) .45s forwards; }
+  }
+  @keyframes cfDraw { to { stroke-dashoffset: 0; } }
+  @keyframes cfPop { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  /* ============ Reveal-on-scroll / entrance animations (subtle, premium) ============ */
+  @media (prefers-reduced-motion: no-preference) {
+    html.has-anim :is(.eyebrow, h1, h2, .hero-sub, .hero-cta-row, .trust,
+      .pkg-card, .step-ill, .proof-item, .contact-form, .footer-brand, .footer-col,
+      .section-header p) {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+      transition-delay: var(--rd, 0ms);
+    }
+    html.has-anim :is(.eyebrow, h1, h2, .hero-sub, .hero-cta-row, .trust,
+      .pkg-card, .step-ill, .proof-item, .contact-form, .footer-brand, .footer-col,
+      .section-header p).in {
+      opacity: 1;
+      transform: none;
+    }
+  }
 </style>
+<script>
+  (function () {
+    try { document.documentElement.classList.add('has-anim'); } catch (e) {}
+    // Safety net: if the reveal script never runs, reveal everything anyway.
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (window.__revealActive) return;
+        try {
+          document.querySelectorAll('.eyebrow, h1, h2, .hero-sub, .hero-cta-row, .trust, .pkg-card, .step-ill, .proof-item, .contact-form, .footer-brand, .footer-col, .section-header p')
+            .forEach(function (el) { el.classList.add('in'); });
+        } catch (e) {}
+      }, 1500);
+    });
+  })();
+</script>
 </head>
 <body>
 
@@ -1521,6 +1587,16 @@
           <button class="cf-submit" type="submit">Send melding <span>→</span></button>
         </form>
 
+        <div class="cf-success" aria-live="polite">
+          <svg class="cf-check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="cf-check-circle" cx="26" cy="26" r="24"/>
+            <path class="cf-check-mark" d="M14 27 l8 8 l16 -18"/>
+          </svg>
+          <h3>Takk for din henvendelse!</h3>
+          <p>Vi har mottatt meldingen din og tar kontakt med deg så snart som mulig.</p>
+          <button type="button" class="cf-again">Send ny henvendelse</button>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1636,6 +1712,19 @@
       status.style.cssText = 'margin-top:14px;font-size:14px;line-height:1.5;min-height:1em;';
       form.appendChild(status);
 
+      const successEl = document.querySelector('.cf-success');
+      const againBtn = successEl ? successEl.querySelector('.cf-again') : null;
+      if (againBtn) {
+        againBtn.addEventListener('click', function () {
+          successEl.classList.remove('show');
+          form.style.display = '';
+          form.reset();
+          if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
+          status.textContent = '';
+          form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      }
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (btn) { btn.disabled = true; btn.innerHTML = 'Sender …'; }
@@ -1664,11 +1753,43 @@
         }
 
         form.reset();
-        status.style.color = 'var(--gold-light)';
-        status.textContent = 'Takk! Meldingen din er mottatt. Vi svarer vanligvis innen 3 timer.';
-        if (btn) { btn.innerHTML = 'Sendt ✓'; }
+        if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
+        if (successEl) {
+          status.textContent = '';
+          form.style.display = 'none';
+          successEl.classList.add('show');
+          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          status.style.color = 'var(--gold-light)';
+          status.textContent = 'Takk! Vi tar kontakt med deg så snart som mulig.';
+        }
       });
     }
+  </script>
+  <!-- ============ Scroll reveal (IntersectionObserver, subtle stagger) ============ -->
+  <script>
+    (function () {
+      window.__revealActive = true;
+      var SEL = '.eyebrow, h1, h2, .hero-sub, .hero-cta-row, .trust, .pkg-card, .step-ill, .proof-item, .contact-form, .footer-brand, .footer-col, .section-header p';
+      var els = [].slice.call(document.querySelectorAll(SEL));
+      function showAll() { els.forEach(function (el) { el.classList.add('in'); }); }
+      if (!('IntersectionObserver' in window)) { showAll(); return; }
+      try {
+        var io = new IntersectionObserver(function (entries, obs) {
+          var shown = entries.filter(function (e) { return e.isIntersecting; });
+          shown.sort(function (a, b) {
+            return (a.boundingClientRect.top - b.boundingClientRect.top) ||
+                   (a.boundingClientRect.left - b.boundingClientRect.left);
+          });
+          shown.forEach(function (e, i) {
+            e.target.style.setProperty('--rd', (Math.min(i, 6) * 85) + 'ms');
+            e.target.classList.add('in');
+            obs.unobserve(e.target);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        els.forEach(function (el) { io.observe(el); });
+      } catch (e) { showAll(); }
+    })();
   </script>
 </body>
 </html>
