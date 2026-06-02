@@ -782,6 +782,60 @@
     .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 
+  /* ============ Reviews (Vurderinger) ============ */
+  .reviews { padding: clamp(70px, 9vw, 120px) 0; }
+  .reviews .section-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+  .rev-carousel { position: relative; display: flex; align-items: stretch; gap: 12px; margin-bottom: 56px; }
+  .rev-list {
+    display: flex; gap: 20px; flex: 1;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    padding: 4px 2px; scrollbar-width: none;
+  }
+  .rev-list::-webkit-scrollbar { display: none; }
+  .rev-list.centered { justify-content: center; }
+  .rev-card {
+    flex: 0 0 clamp(258px, 78%, 336px);
+    scroll-snap-align: start;
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 26px 24px;
+  }
+  .rev-arrow {
+    flex: 0 0 auto; align-self: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--border); color: var(--gold);
+    font-size: 22px; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+  }
+  .rev-arrow:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+  .rev-arrow[hidden] { display: none; }
+  .rev-card .stars { color: var(--gold); font-size: 15px; letter-spacing: 3px; margin-bottom: 14px; }
+  .rev-card .stars .empty { color: var(--border); }
+  .rev-card .rev-msg {
+    font-family: var(--sans); font-weight: 300; font-size: 15px; line-height: 1.7;
+    color: var(--text); margin-bottom: 16px;
+  }
+  .rev-card .rev-name {
+    font-family: var(--sans); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light);
+  }
+  .rev-empty { grid-column: 1 / -1; text-align: center; color: var(--muted); font-style: italic; font-size: 14px; }
+  .rev-cta { max-width: 560px; margin: 0 auto; text-align: center; }
+  .rev-form-title {
+    font-family: var(--sans); font-weight: 500; font-size: clamp(20px, 2.2vw, 26px);
+    color: var(--white); margin-bottom: 20px;
+  }
+  .rev-stars { display: inline-flex; gap: 10px; margin-bottom: 22px; }
+  .rev-star {
+    background: none; border: 0; padding: 0; cursor: pointer;
+    font-size: 32px; line-height: 1; color: var(--border);
+    transition: color .15s var(--ease), transform .15s var(--ease);
+  }
+  .rev-star:hover { transform: translateY(-2px); }
+  .rev-star.on { color: var(--gold); }
+  .rev-star.hot { color: var(--gold-light); }
+  .rev-form { text-align: left; }
+
   /* ============ Contact form success state ============ */
   .cf-success { display: none; text-align: center; padding: 28px 12px 10px; }
   .cf-success.show { display: block; }
@@ -872,6 +926,7 @@
         <a href="#monthly">Månedlig</a>
         <a href="#tillegg">Tillegg</a>
         <a href="#process">Prosess</a>
+        <a href="#vurderinger">Vurderinger</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
       <a class="nav-cta" href="mailto:booking@lumoramedia.no">Book nå</a>
@@ -1536,6 +1591,55 @@
     </div>
   </section>
 
+  <!-- =================== REVIEWS (Vurderinger) =================== -->
+  <section class="reviews" id="vurderinger">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Vurderinger</span>
+        <h2 class="h-section">Hva kundene <span class="italic">sier.</span></h2>
+        <p>Ekte tilbakemeldinger fra meglere og kunder som har jobbet med Lumora Media.</p>
+      </div>
+
+      <div class="rev-carousel" id="rev-carousel">
+        <button type="button" class="rev-arrow" id="rev-prev" aria-label="Forrige vurderinger" hidden>‹</button>
+        <div class="rev-list" id="rev-list" aria-live="polite"></div>
+        <button type="button" class="rev-arrow" id="rev-next" aria-label="Neste vurderinger" hidden>›</button>
+      </div>
+
+      <div class="rev-cta">
+        <h3 class="rev-form-title">Gi din vurdering</h3>
+        <form class="rev-form" id="review-form">
+          <div class="rev-stars" id="rev-stars" role="radiogroup" aria-label="Velg vurdering fra 1 til 5 stjerner">
+            <button type="button" class="rev-star" role="radio" aria-checked="false" data-val="1" aria-label="1 stjerne">★</button>
+            <button type="button" class="rev-star" role="radio" aria-checked="false" data-val="2" aria-label="2 stjerner">★</button>
+            <button type="button" class="rev-star" role="radio" aria-checked="false" data-val="3" aria-label="3 stjerner">★</button>
+            <button type="button" class="rev-star" role="radio" aria-checked="false" data-val="4" aria-label="4 stjerner">★</button>
+            <button type="button" class="rev-star" role="radio" aria-checked="false" data-val="5" aria-label="5 stjerner">★</button>
+          </div>
+          <div class="cf-field">
+            <label for="rev-name">Navn *</label>
+            <input id="rev-name" name="name" type="text" required placeholder="Ditt navn" />
+          </div>
+          <div class="cf-field">
+            <label for="rev-message">Din vurdering *</label>
+            <textarea id="rev-message" name="message" rows="4" required placeholder="Fortell om din opplevelse med Lumora Media."></textarea>
+          </div>
+          <button class="cf-submit" type="submit">Send vurdering <span>→</span></button>
+        </form>
+
+        <div class="cf-success" aria-live="polite">
+          <svg class="cf-check" viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="cf-check-circle" cx="26" cy="26" r="24"/>
+            <path class="cf-check-mark" d="M14 27 l8 8 l16 -18"/>
+          </svg>
+          <h3>Takk for din vurdering!</h3>
+          <p>Vurderingen din er mottatt og publiseres så snart den er godkjent.</p>
+          <button type="button" class="cf-again">Skriv en ny vurdering</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- =================== CONTACT FORM =================== -->
   <section class="contact" id="kontakt">
     <div class="container">
@@ -1628,6 +1732,7 @@
           <a href="#tillegg">Tillegg</a>
           <a href="#process">Prosess</a>
           <a href="#monthly">Månedlige pakker</a>
+          <a href="#vurderinger">Vurderinger</a>
           <a href="#kontakt">Kontakt</a>
         </div>
 
@@ -1716,7 +1821,7 @@
       status.style.cssText = 'margin-top:14px;font-size:14px;line-height:1.5;min-height:1em;';
       form.appendChild(status);
 
-      const successEl = document.querySelector('.cf-success');
+      const successEl = document.querySelector('#kontakt .cf-success');
       const againBtn = successEl ? successEl.querySelector('.cf-again') : null;
       if (againBtn) {
         againBtn.addEventListener('click', function () {
@@ -1794,6 +1899,110 @@
         els.forEach(function (el) { io.observe(el); });
       } catch (e) { showAll(); }
     })();
+  </script>
+  <!-- ============ Reviews (Supabase) ============ -->
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.106.2';
+    const supabase = createClient('https://hruzsxgdlayusgqjzukn.supabase.co', 'sb_publishable_9mOfhegjB94YtoHDoxgS0A_it9oMYm2');
+
+    const section = document.getElementById('vurderinger');
+    if (section) {
+      const form = section.querySelector('#review-form');
+      const starsWrap = section.querySelector('#rev-stars');
+      const stars = starsWrap ? [].slice.call(starsWrap.querySelectorAll('.rev-star')) : [];
+      const listEl = section.querySelector('#rev-list');
+      const successEl = section.querySelector('.cf-success');
+      const againBtn = successEl ? successEl.querySelector('.cf-again') : null;
+      const btn = form ? form.querySelector('.cf-submit') : null;
+      const btnLabel = btn ? btn.innerHTML : '';
+      let rating = 0;
+
+      const carousel = section.querySelector('#rev-carousel');
+      const prevBtn = section.querySelector('#rev-prev');
+      const nextBtn = section.querySelector('#rev-next');
+      function cardStep() { const c = listEl ? listEl.querySelector('.rev-card') : null; return c ? c.getBoundingClientRect().width + 20 : (listEl ? listEl.clientWidth : 0); }
+      function updateArrows() {
+        if (!listEl) return;
+        const over = listEl.scrollWidth > listEl.clientWidth + 4;
+        if (prevBtn) prevBtn.hidden = !over;
+        if (nextBtn) nextBtn.hidden = !over;
+        listEl.classList.toggle('centered', !over);
+      }
+      if (nextBtn) nextBtn.addEventListener('click', function () {
+        if (listEl.scrollLeft + listEl.clientWidth >= listEl.scrollWidth - 4) listEl.scrollTo({ left: 0, behavior: 'smooth' });
+        else listEl.scrollBy({ left: cardStep(), behavior: 'smooth' });
+      });
+      if (prevBtn) prevBtn.addEventListener('click', function () {
+        if (listEl.scrollLeft <= 4) listEl.scrollTo({ left: listEl.scrollWidth, behavior: 'smooth' });
+        else listEl.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+      });
+      window.addEventListener('resize', updateArrows);
+
+      const statusEl = document.createElement('p');
+      statusEl.className = 'cf-status';
+      statusEl.setAttribute('role', 'status');
+      statusEl.style.cssText = 'margin-top:12px;font-size:14px;line-height:1.5;min-height:1em;';
+      if (form) form.appendChild(statusEl);
+
+      function paint(n) { stars.forEach(function (s, i) { s.classList.toggle('on', i < n); s.setAttribute('aria-checked', (i + 1) === n ? 'true' : 'false'); }); }
+      function hot(n) { stars.forEach(function (s, i) { s.classList.toggle('hot', i < n); }); }
+      stars.forEach(function (s, i) {
+        s.addEventListener('click', function () { rating = i + 1; paint(rating); statusEl.textContent = ''; });
+        s.addEventListener('mouseenter', function () { hot(i + 1); });
+      });
+      if (starsWrap) starsWrap.addEventListener('mouseleave', function () { hot(0); });
+
+      function esc(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+      function stars5(n) { let o = ''; for (let i = 1; i <= 5; i++) o += '<span class="' + (i <= n ? '' : 'empty') + '">★</span>'; return o; }
+
+      function showCarousel(yes) { if (carousel) carousel.style.display = yes ? '' : 'none'; }
+      async function loadReviews() {
+        if (!listEl) return;
+        try {
+          const { data, error } = await supabase.from('reviews')
+            .select('id, rating, name, message, created_at')
+            .order('created_at', { ascending: false }).limit(20);
+          if (error || !data || !data.length) { listEl.innerHTML = ''; showCarousel(false); return; }
+          listEl.innerHTML = data.map(function (r) {
+            return '<div class="rev-card"><div class="stars">' + stars5(r.rating) + '</div>' +
+              '<p class="rev-msg">' + esc(r.message) + '</p>' +
+              '<div class="rev-name">' + esc(r.name) + '</div></div>';
+          }).join('');
+          showCarousel(true);
+          listEl.scrollLeft = 0;
+          updateArrows();
+        } catch (e) { listEl.innerHTML = ''; showCarousel(false); }
+      }
+      loadReviews();
+
+      if (form) {
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          if (rating < 1) { statusEl.style.color = '#e0736b'; statusEl.textContent = 'Velg antall stjerner (1 til 5).'; return; }
+          if (btn) { btn.disabled = true; btn.innerHTML = 'Sender …'; }
+          statusEl.textContent = '';
+          const fd = new FormData(form);
+          const v = function (k) { return (fd.get(k) || '').toString().trim(); };
+          const { error } = await supabase.from('reviews').insert({ rating: rating, name: v('name'), message: v('message') });
+          if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
+          if (error) {
+            console.error('Review insert error:', error);
+            statusEl.style.color = '#e0736b';
+            statusEl.textContent = 'Noe gikk galt. Prøv igjen om litt.';
+            return;
+          }
+          form.reset(); rating = 0; paint(0);
+          if (successEl) { form.style.display = 'none'; successEl.classList.add('show'); }
+          loadReviews();
+        });
+      }
+      if (againBtn) {
+        againBtn.addEventListener('click', function () {
+          if (successEl) successEl.classList.remove('show');
+          if (form) form.style.display = '';
+        });
+      }
+    }
   </script>
 </body>
 </html>
