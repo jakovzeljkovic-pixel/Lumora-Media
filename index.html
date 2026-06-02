@@ -171,9 +171,10 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: url('img/hero.jpg');
+    background-image: url('img/hero.jpg?v=4');
     background-size: cover;
     background-position: center center;
+    will-change: transform;
     z-index: -2;
   }
   .hero-fade {
@@ -1900,6 +1901,29 @@
       } catch (e) { showAll(); }
     })();
   </script>
+  <!-- ============ Hero parallax ============ -->
+  <script>
+    (function () {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var hero = document.querySelector('.hero');
+      var bg = document.querySelector('.hero-bg');
+      if (!hero || !bg) return;
+      var ticking = false;
+      function update() {
+        var h = hero.offsetHeight || 1;
+        var y = Math.min(window.scrollY, h);
+        var shift = (y * 0.3).toFixed(1);
+        bg.style.transform = 'translate3d(0,' + shift + 'px,0)';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+
   <!-- ============ Reviews (Supabase) ============ -->
   <script type="module">
     import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.106.2';
