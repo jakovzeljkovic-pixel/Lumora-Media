@@ -12,6 +12,8 @@ skills-lock.json
 
 # Local env file (publishable key is public-safe, but keep env files out of the repo)
 .env
+# ...but DO commit the production env (publishable key only, safe to expose)
+!.env.production
 
 # Backup archive (redundant with git history) — remove this line to track it
 lumora_media_website.zip
