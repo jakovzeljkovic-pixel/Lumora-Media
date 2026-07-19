@@ -411,12 +411,12 @@
     display: inline-flex; align-items: center; justify-content: center;
     width: 22px; height: 22px;
     color: var(--gold);
-    font-size: 20px; font-weight: 300; line-height: 1;
+    font-size: 15px; font-weight: 400; line-height: 1;
     flex-shrink: 0;
     transition: transform .35s cubic-bezier(.4,0,.2,1), color .25s var(--ease);
   }
   .feat-btn[aria-expanded="true"] .feat-plus {
-    transform: rotate(45deg);
+    transform: rotate(180deg);
     color: var(--gold-light);
   }
   .feat-btn:hover .feat-plus { color: var(--gold-light); }
@@ -472,13 +472,13 @@
   }
   .addon {
     background: var(--card-2);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(184,150,90,.42);
     border-radius: 8px;
     padding: 28px 24px;
     display: flex; flex-direction: column; gap: 14px;
     transition: border-color .3s var(--ease), transform .3s var(--ease);
   }
-  .addon:hover { border-color: rgba(184,150,90,.35); transform: translateY(-2px); }
+  .addon:hover { border-color: rgba(184,150,90,.75); transform: translateY(-2px); }
   .addon-name {
     font-family: var(--serif); font-weight: 400; font-size: 24px;
     color: var(--white); letter-spacing: 0; line-height: 1.1;
@@ -513,6 +513,12 @@
   }
   @media (max-width: 980px) { .addon-grid { grid-template-columns: 1fr; } }
 
+  /* Tillegg background imagery (darkened, text stays readable) */
+  .addon { position: relative; overflow: hidden; background-size: cover; background-position: center; background-clip: padding-box; }
+  .addon::before { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(17,21,32,.52) 0%, rgba(17,21,32,.80) 54%, rgba(17,21,32,.93) 100%); z-index:0; transition: background .3s var(--ease); }
+  .addon:hover::before { background: linear-gradient(180deg, rgba(17,21,32,.40) 0%, rgba(17,21,32,.72) 54%, rgba(17,21,32,.90) 100%); }
+  .addon > * { position: relative; z-index: 1; }
+
   /* ============== PROCESS ============== */
   .process {
     padding: 120px 0;
@@ -521,59 +527,46 @@
   }
   .steps-ill {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    position: relative;
+    gap: 20px;
     margin-top: 8px;
   }
-  .step-ill { text-align: left; padding: 0 8px; position: relative; }
-  .step-ill:not(:last-child)::after {
-    content: ""; position: absolute;
-    right: -22px; top: 60px;
-    width: 12px; height: 1px;
-    background: var(--gold); opacity: .3;
-  }
-  .step-ill .ill {
-    width: 120px; height: 120px;
-    border: 1px solid var(--gold-line);
-    border-radius: 12px;
-    display: grid; place-items: center;
-    background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
-    color: var(--gold);
-    margin-bottom: 32px;
+  .step-ill {
     position: relative;
+    min-height: 400px;
+    border-radius: 12px;
     overflow: hidden;
+    border: 1px solid rgba(184,150,90,.55);
+    background-size: cover; background-position: center;
+    background-clip: padding-box;
+    display: flex; align-items: flex-end;
+    transition: transform .35s var(--ease), border-color .35s var(--ease);
   }
-  .step-ill .ill::before {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(184,150,90,.12) 0%, transparent 60%);
-    pointer-events: none;
+  .step-ill::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(180deg, rgba(6,8,16,.28) 0%, rgba(6,8,16,.62) 48%, rgba(6,8,16,.90) 100%);
+    transition: background .35s var(--ease);
   }
-  .step-ill .ill svg {
-    width: 60px; height: 60px;
-    fill: none; stroke: currentColor; stroke-width: 1.6;
-    stroke-linecap: round; stroke-linejoin: round;
-    position: relative; z-index: 1;
-  }
+  .step-ill:hover { border-color: rgba(184,150,90,.8); }
+  .step-ill:hover::before { background: linear-gradient(180deg, rgba(6,8,16,.16) 0%, rgba(6,8,16,.54) 48%, rgba(6,8,16,.88) 100%); }
+  .step-body { position: relative; z-index: 1; padding: 26px 24px; width: 100%; }
   .step-ill .step-num {
     font-family: var(--serif); font-weight: 400;
-    font-size: 28px; color: var(--gold); line-height: 1;
-    margin-bottom: 12px;
+    font-size: 30px; color: var(--gold); line-height: 1;
+    margin-bottom: 10px;
   }
   .step-ill .step-title {
-    font-family: var(--serif); font-weight: 400; font-size: 24px;
-    color: var(--white); letter-spacing: 0.01em; line-height: 1.1;
-    margin-bottom: 14px;
+    font-family: var(--serif); font-weight: 400; font-size: 23px;
+    color: var(--white); letter-spacing: 0.01em; line-height: 1.15;
+    margin-bottom: 10px;
   }
   .step-ill .step-desc {
-    font-family: var(--sans); font-weight: 300; font-size: 14px;
-    line-height: 1.7; color: #A4A8B0;
-    max-width: 240px;
+    font-family: var(--sans); font-weight: 300; font-size: 13.5px;
+    line-height: 1.65; color: #C4C8D0;
   }
   @media (max-width: 980px) {
-    .steps-ill { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .step-ill:not(:last-child)::after { display: none; }
+    .steps-ill { grid-template-columns: 1fr 1fr; gap: 18px; }
   }
-  @media (max-width: 560px) { .steps-ill { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .steps-ill { grid-template-columns: 1fr; } .step-ill { min-height: 340px; } }
 
   /* ============== STATS / PROOF ============== */
   .proof {
@@ -714,19 +707,6 @@
     .cf-row { grid-template-columns: 1fr; }
   }
 
-  /* ============== FOOTER NOTE ============== */
-  .footnote-band {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--divider);
-    text-align: center;
-  }
-  .footnote-band p {
-    max-width: 700px; margin: 0 auto;
-    font-family: var(--serif); font-style: italic; font-weight: 300;
-    color: var(--muted);
-    font-size: 15px; line-height: 1.7;
-    letter-spacing: 0.005em;
-  }
 
   /* ============== FOOTER ============== */
   footer { background: var(--bg); padding: 80px 0 36px; }
@@ -887,6 +867,82 @@
       transform: none;
     }
   }
+
+  /* Visible feature list for single-offer cards */
+  .pkg-feats-label { font-family: var(--sans); font-weight:500; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin: 24px 0 2px; }
+  .pkg-feats { list-style:none; margin: 12px 0 4px; display:flex; flex-direction:column; gap:11px; flex-grow:1; }
+  .pkg-feats li { font-family: var(--sans); font-weight:300; font-size:14px; color:#C8CCD2; line-height:1.5; display:flex; align-items:baseline; gap:12px; }
+  .pkg-feats li::before { content:"+"; color:var(--gold); font-weight:500; font-size:14px; line-height:1; }
+  .offer-single { max-width:620px; margin:0 auto; }
+
+  /* Card top photo with fade (premium image header) */
+  .pkg-photo { position: relative; height: 190px; background-size: cover; background-position: center; border-radius: 9px 9px 0 0; }
+  .pkg-card.featured .pkg-photo { border-radius: 8px 8px 0 0; }
+  .pkg-photo::after { content:""; position:absolute; inset:0; background: linear-gradient(to bottom, rgba(17,21,32,0) 18%, rgba(17,21,32,.55) 62%, var(--card) 100%); }
+  .pkg-photo .featured-ribbon { position:absolute; top:14px; left:14px; right:auto; transform:none; border-radius:999px; padding:7px 16px; z-index:2; letter-spacing:0.22em; }
+  .pkg-title-row { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:8px; margin-top:-6px; }
+  .pkg-title-row .pkg-name { font-family: var(--serif); font-weight:300; font-size: clamp(30px,3vw,38px); color:var(--white); line-height:1; letter-spacing:0.01em; }
+  .offer-two { display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:860px; margin:0 auto; }
+  .offer-single { max-width:440px; margin:0 auto; }
+  @media (max-width:760px){ .offer-two { grid-template-columns:1fr; max-width:440px; } }
+  .offer-three { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1140px; margin:0 auto; align-items:stretch; }
+  @media (max-width:980px){ .offer-three { grid-template-columns:1fr; max-width:440px; } }
+
+  /* ===== Premium button system v2: metallic gold + fine texture, deep-blue gradient on hover ===== */
+  :root { --btn-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='bn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23bn)' opacity='0.35'/%3E%3C/svg%3E"); }
+  .feat-plus svg { width: 15px; height: 15px; display: block; }
+  .btn-gold, .btn-ghost, .nav-cta, .cf-submit, .cf-again, .pkg-cta {
+    transition: color .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), background-color .3s var(--ease) !important;
+  }
+  .btn-gold, .nav-cta, .cf-submit, .cf-again, .pkg-cta {
+    background-color: #C29C60 !important;
+    background-image: var(--btn-noise),
+      linear-gradient(180deg, rgba(255,255,255,.16), rgba(0,0,0,.06) 58%),
+      linear-gradient(180deg, #E0BE86 0%, #C49E62 46%, #A9854A 100%) !important;
+    background-size: 110px 110px, 100% 100%, 100% 100% !important;
+    background-blend-mode: overlay, normal, normal !important;
+    color: #2A1E0E !important;
+    border: 1px solid rgba(122,94,46,.6) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 6px rgba(110,82,36,.25), 0 4px 14px rgba(0,0,0,.28) !important;
+  }
+  .btn-gold:hover, .btn-gold:active,
+  .btn-ghost:hover, .btn-ghost:active,
+  .nav-cta:hover, .nav-cta:active,
+  .cf-submit:hover, .cf-submit:active,
+  .cf-again:hover, .cf-again:active,
+  .pkg-cta:hover, .pkg-cta:active {
+    background-color: #132846 !important;
+    background-image: var(--btn-noise),
+      linear-gradient(180deg, rgba(255,255,255,.07), rgba(0,0,0,.20) 62%),
+      linear-gradient(180deg, #244675 0%, #142C52 50%, #0A1830 100%) !important;
+    background-size: 110px 110px, 100% 100%, 100% 100% !important;
+    background-blend-mode: overlay, normal, normal !important;
+    color: #EAF0FF !important;
+    border-color: rgba(70,110,175,.5) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), inset 0 -3px 10px rgba(0,0,0,.42), 0 6px 20px rgba(6,14,30,.55) !important;
+  }
+
+  /* subtle chevron nudge on hover (collapsed items) */
+  @keyframes chevNudge { 0% { transform: translateY(0); } 42% { transform: translateY(3px); } 100% { transform: translateY(0); } }
+  .feat-btn[aria-expanded="false"]:hover .feat-plus { animation: chevNudge .55s var(--ease); }
+  .feat-btn[aria-expanded="false"]:hover .feat-plus svg { filter: drop-shadow(0 1px 2px rgba(184,150,90,.35)); }
+
+  /* premium hover: text lifts + grows slightly (GPU-composited, glitch-free) */
+  .step-body, .addon .addon-name, .addon ul.feat-mini,
+  .proof-item .stat, .proof-item .ttl, .proof-item p {
+    transition: transform .45s var(--ease);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translate3d(0,0,0);
+  }
+  .step-ill:hover .step-body { transform: translate3d(0,-6px,0); }
+  .addon:hover .addon-name { transform: translate3d(0,-5px,0); }
+  .addon:hover ul.feat-mini { transform: translate3d(0,-3px,0); }
+  .proof-item:hover .stat { transform: translate3d(0,-7px,0); }
+  .proof-item:hover .ttl { transform: translate3d(0,-4px,0); }
+  .proof-item:hover p { transform: translate3d(0,-2px,0); }
+  .proof-item { transition: border-color .3s var(--ease); }
+  .proof-item:hover { border-color: rgba(184,150,90,.4); }
 </style>
 <script>
   (function () {
@@ -943,7 +999,7 @@
       <div class="hero-content">
         <span class="eyebrow">Premium eiendomsinnhold · Oslo</span>
         <h1>Innhold som <span class="italic">selger</span><br/>boliger raskere.</h1>
-        <p class="hero-sub">Premium foto, video, drone og twilight-innhold for meglerkontorer i Oslo og Norge. Alt levert senest 48 timer.</p>
+        <p class="hero-sub">Laget for meglere: merkevarevideoer, reels, foto, drone og mer, for de som vil skille seg ut.</p>
         <div class="hero-cta-row">
           <a class="btn-gold" href="#pakker">Se pakker <span>→</span></a>
           <a class="btn-ghost" href="#kontakt">Snakk med oss <span>→</span></a>
@@ -988,439 +1044,358 @@
     <div class="container">
       <div class="section-header">
         <span class="eyebrow">Pakker</span>
-        <h2 class="h-section">Sett det sammen. <span class="italic">Spar tid.</span></h2>
-        <p>Tre pakker bygget for meglere, pluss en skreddersydd. Velg det listingen trenger.</p>
+        <h2 class="h-section">Velg pakken <span class="italic">som passer.</span></h2>
+        <p>To faste pakker per eiendom, pluss en skreddersydd for alt annet. Ingen binding, bestill når du trenger.</p>
       </div>
 
-      <div class="pricing-grid">
+      <div class="offer-three">
 
-        <!-- ━━━━ BASIS ━━━━ -->
         <article class="pkg-card" data-card>
-          <div class="pkg-header">
-            <div class="pkg-name">Basis</div>
-            <div class="pkg-tag"><span class="icon">⊞</span>3 tjenester</div>
-          </div>
+          <div class="pkg-photo" style="background-image:url('img/pakke-standard.jpg?v=3')"></div>
           <div class="pkg-body">
-            <p class="pkg-desc">Foto, drone og signature listing video. Alt det listingen trenger fra dag én.</p>
-            <div class="pkg-price-row">
-              <span class="pkg-price">
-                <span class="from">Fra</span>
-                <span class="amount">6 950</span>
-                <span class="unit">kr</span>
-              </span>
-              <span class="pkg-vat">eks. mva</span>
+            <div class="pkg-title-row">
+              <div class="pkg-name">Standard</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>4 tjenester</div>
             </div>
-
+            <p class="pkg-desc">Sterkt innhold til boligannonsen, uten agentvideo. Foto, cinematisk video, reels og drone.</p>
+            <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Profesjonell MLS-fotografering</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Profesjonell boligfoto, ubegrenset antall</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler. Fargegradert og retusjert, hvert eneste bilde.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Levering innen 24 timer. Du får så mange bilder som trengs for å vise eiendommen på sitt mest attraktive, i best mulig lys. Interiør, detaljer, eksteriør og drone, alt inkludert.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Dronefotografering</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Cinematisk boligvideo</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen rundt eiendommen: spesielt effektivt for store tomter, utsikt, sjøtomter og nabolagskontekst. Lisensiert droneoperatør (EASA A1/A3).</div></div>
+                <div class="feat-body"><div class="feat-body-inner">En cinematisk video som viser boligen i bevegelse. Rolige, gjennomtenkte bevegelser, fargegradert og klar for finn.no og sosiale medier.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Signature Listing Video</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">4–5 korte reels for Instagram, TikTok og Shorts</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Optimalisert for kortformat vertikale plattformer, eller horisontal hvis ønskelig. Inkluderer dronevideo i klippet for ekstra produksjonsverdi og polish.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Fire til fem korte vertikale klipp bygget for kortformat. Hver optimalisert for å stoppe scrollingen og drive visninger.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Drone foto og video inkludert</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Ingen binding</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Bestill når du trenger det. Ingen månedlig forpliktelse, ingen bindingstid.</div></div>
               </li>
             </ul>
-
-            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Pakke%20Basis">Utforsk pakke <span class="arrow">→</span></a>
+            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
           </div>
         </article>
 
-        <!-- ━━━━ STANDARD ━━━━ -->
-        <article class="pkg-card" data-card>
-          <div class="pkg-header">
-            <div class="pkg-name">Standard</div>
-            <div class="pkg-tag"><span class="icon">⊞</span>4 tjenester</div>
-          </div>
-          <div class="pkg-body">
-            <p class="pkg-desc">Foto, drone, twilight og Platinum Reel med megler on-camera. For meglere som vil skille seg ut.</p>
-            <div class="pkg-price-row">
-              <span class="pkg-price">
-                <span class="from">Fra</span>
-                <span class="amount">9 750</span>
-                <span class="unit">kr</span>
-              </span>
-              <span class="pkg-vat">eks. mva</span>
-            </div>
-
-            <ul class="feat-list">
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Profesjonell MLS-fotografering</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Dronefotografering</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen: spesielt effektivt for store tomter, utsikt, sjøtomter og nabolagskontekst.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Twilight Foto</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Twilight-fotografering fanger eiendommen i den korte tidsperioden etter solnedgang eller før soloppgang («blue hour» / «golden hour»), og blander naturlige himmelfarger med kunstig interiør- og eksteriørbelysning til et dramatisk, innbydende uttrykk. <strong>Boliger med twilight-bilder som hovedbilde får opptil 76% flere visninger online.</strong></div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Platinum Reel</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Kort video for Instagram, TikTok og YouTube Shorts der megleren presenterer eiendommen. Profesjonell fargegradering og caption-overlays. Bygger tillit og driver leads.</div></div>
-              </li>
-            </ul>
-
-            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Pakke%20Standard">Utforsk pakke <span class="arrow">→</span></a>
-          </div>
-        </article>
-
-        <!-- ━━━━ PREMIUM (featured) ━━━━ -->
         <article class="pkg-card featured" data-card>
-          <span class="featured-ribbon">Mest populær</span>
-          <div class="pkg-header">
-            <div class="pkg-name">Premium</div>
-            <div class="pkg-tag"><span class="icon">⊞</span>7 tjenester</div>
+          <div class="pkg-photo" style="background-image:url('img/pakke-premium.jpg?v=2')">
+            <span class="featured-ribbon">Mest populær</span>
           </div>
           <div class="pkg-body">
-            <p class="pkg-desc">Den komplette mediepakken, for eiendommer som fortjener å bli vist på beste måte på alle plattformer.</p>
-            <div class="pkg-price-row">
-              <span class="pkg-price">
-                <span class="from">Fra</span>
-                <span class="amount">11 550</span>
-                <span class="unit">kr</span>
-              </span>
-              <span class="pkg-vat">eks. mva</span>
+            <div class="pkg-title-row">
+              <div class="pkg-name">Premium</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>5 tjenester</div>
             </div>
-
+            <p class="pkg-desc">Den komplette mediepakken. Alt en bolig trenger for å skille seg ut, inkludert agentpresentasjon.</p>
+            <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Profesjonell MLS-fotografering</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Agentpresentasjon premium reel</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Megleren presenterer eiendommen on-camera. Vi skriver manuset og lager en viral hook som fanger seeren i de første sekundene og holder på engasjementet. Profesjonelt fargegradert med caption-overlays.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Dronefotografering</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Profesjonell boligfoto, ubegrenset antall</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen: spesielt effektivt for store tomter, utsikt, sjøtomter og nabolagskontekst.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Levering innen 24 timer. Du får så mange bilder som trengs for å vise eiendommen på sitt mest attraktive, i best mulig lys. Interiør, detaljer, eksteriør og drone, alt inkludert.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Dronevideo</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Cinematisk boligvideo</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Cinematisk luftvideo for annonser og Instagram/TikTok/YouTube Shorts. Lifestyle-shots og merkevareløft, fullt inkludert.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">En cinematisk video som viser boligen i bevegelse. Rolige, gjennomtenkte bevegelser, fargegradert og klar for finn.no og sosiale medier.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Twilight Foto</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">4–5 korte reels for Instagram, TikTok og Shorts</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Twilight-fotografering fanger eiendommen i den korte tidsperioden etter solnedgang eller før soloppgang («blue hour» / «golden hour»). <strong>Boliger med twilight-bilder som hovedbilde får opptil 76% flere visninger online.</strong></div></div>
+                <div class="feat-body"><div class="feat-body-inner">Fire til fem korte vertikale klipp bygget for kortformat. Hver optimalisert for å stoppe scrollingen og drive visninger.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Twilight Video</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Drone foto og video inkludert</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Cinematisk video tatt ved magisk lys (blue hour / golden hour). Får boligen til å føles dramatisk, eksklusiv og umiddelbart mer attraktiv online.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Platinum Reel</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Ingen binding</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Kort video for Instagram, TikTok og YouTube Shorts der megleren presenterer eiendommen. Profesjonell fargegradering og caption-overlays. Bygger tillit og driver leads.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Teaser Video</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Kort, high-impact klipp laget for Reels, TikTok og Shorts. Bygger forventning, driver klikk og skaper umiddelbar momentum i det annonsen går live.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Bestill når du trenger det. Ingen månedlig forpliktelse, ingen bindingstid.</div></div>
               </li>
             </ul>
-
-            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Pakke%20Premium">Utforsk pakke <span class="arrow">→</span></a>
+            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
           </div>
         </article>
 
-        <!-- ━━━━ CUSTOM ━━━━ -->
-        <article class="pkg-card" data-card>
-          <div class="pkg-header">
-            <div class="pkg-name">Custom</div>
-            <div class="pkg-tag"><span class="icon">⊞</span>Skreddersydd</div>
+        <article class="pkg-card featured" data-card>
+          <div class="pkg-photo" style="background-image:url('img/custom-gear.jpg?v=2')">
+            <span class="featured-ribbon">Fleksibel</span>
           </div>
           <div class="pkg-body">
-            <p class="pkg-desc">Bygg din perfekte pakke. Samme tjenester som Premium, tilpasset ditt prosjekt og dine kanaler.</p>
-            <div class="pkg-price-row">
-              <span class="pkg-price on-request">
-                <span class="amount">Pris på forespørsel</span>
-              </span>
+            <div class="pkg-title-row">
+              <div class="pkg-name">Skreddersydd</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>Du velger</div>
             </div>
-
+            <p class="pkg-desc">Eiendom, event, studio, produkt, portrett eller ren video, kombiner tjenestene helt fritt. Fortell oss hva du trenger, så setter vi sammen en pakke og en pris som passer prosjektet.</p>
+            <div class="pkg-feats-label">Slik funker det</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Profesjonell MLS-fotografering</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Velg tjenestene du trenger</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Skarpe, høykvalitets interiør- og eksteriørbilder bygget for å prestere på finn.no og alle store portaler.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Foto, video, drone, reels, event, studio, produkt eller portrett. Bland og match akkurat som du vil ha det.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Dronefotografering</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Tilpasset omfang og budsjett</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hevet eksteriørdekning som viser tomten, omgivelsene og livsstilen rundt eiendommen.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi skreddersyr leveransen etter prosjektet, enten det er én enkelt ting eller en full produksjon.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Dronevideo</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Fast pris før vi starter</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Cinematisk luftvideo for annonser og sosiale medier: lifestyle-shots og merkevareløft.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Du får et klart tilbud på forhånd, tilpasset det du har valgt. Ingen overraskelser underveis.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Twilight Foto</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Konsept og idéutvikling</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Twilight-fotografering ved blue hour eller golden hour. Får opptil 76% flere visninger som hovedbilde online.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi hjelper deg med idé og retning, ikke bare selve produksjonen, så innholdet treffer målet ditt.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Twilight Video</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Levering i formatene du trenger</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Cinematisk video ved magisk lys. Dramatisk og eksklusiv tone.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Platinum Reel</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Megleren on-camera. Kort video for Instagram, TikTok og Shorts med profesjonell fargegradering og captions.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Teaser Video</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Kort, high-impact klipp for Reels og TikTok. Bygger hype og driver klikk når annonsen går live.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi leverer i riktige formater for finn.no, Instagram, TikTok, YouTube eller print, akkurat som prosjektet krever.</div></div>
               </li>
             </ul>
-
-            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=Custom%20pakke">Ta kontakt <span class="arrow">→</span></a>
+            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
           </div>
         </article>
 
-      </div>
-
-      <div class="size-note">
-        <strong class="accent">Standardpriser for boliger under 100 kvm.</strong> Større eiendommer med mer innhold krever ekstra tid og forberedelse. Pris vurderes etter en kort befaring.
       </div>
     </div>
   </section>
 
-  <!-- =================== MÅNEDLIGE PAKKER =================== -->
+  <!-- =================== MÅNEDLIG =================== -->
   <section class="section" id="monthly">
     <div class="container">
       <div class="section-header">
         <span class="eyebrow">Månedlig</span>
-        <h2 class="h-section">Månedlige <span class="italic">pakker.</span></h2>
-        <p>For meglere som vil bygge autoritet og tilstedeværelse. Konsistent, måned etter måned.</p>
+        <h2 class="h-section">Fast innholdspartner <span class="italic">for kontoret.</span></h2>
+        <p>Tre nivåer, samme komplette leveranse. Jo lengre binding, jo bedre pris per måned.</p>
       </div>
 
-      <div class="pricing-grid two">
+      <div class="offer-three">
 
-        <!-- ━━━━ VEKST ━━━━ -->
         <article class="pkg-card" data-card>
-          <div class="pkg-header">
-            <div class="pkg-name">Vekst</div>
-            <div class="pkg-tag"><span class="icon">⊞</span>6 tjenester</div>
-          </div>
+          <div class="pkg-photo" style="background-image:url('img/pakke-3mnd.jpg?v=3')"></div>
           <div class="pkg-body">
-            <p class="pkg-desc">4 strategiske videoer per måned fra 2–3 lokasjoner. Bygd for å vokse din merkevare og synlighet på sosiale medier.</p>
-            <div class="pkg-price-row">
-              <span class="pkg-price">
-                <span class="from">Fra</span>
-                <span class="amount">15 950</span>
-                <span class="unit">kr</span>
-                <span class="per">/ mnd</span>
-              </span>
-              <span class="pkg-vat">eks. mva</span>
+            <div class="pkg-title-row">
+              <div class="pkg-name">3 måneder</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
             </div>
-
+            <p class="pkg-desc">Fast innholdspartner for kontoret, med tre måneders binding. En fleksibel start.</p>
+            <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">4 high-performance videoer per måned</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Komplett pakke for opptil 4 eiendommer i måneden</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">En strategisk miks av merkevareautoritet, historiefortelling, scroll-stoppende innhold og fellesskaps-drevne videoer. Designet for å bygge tillit og synlighet med hver publisering.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Full leveranse per eiendom, for opptil fire eiendommer hver måned. Foto, video, reels og drone for hver enkelt.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">2–3 filming-lokasjoner per måned</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Foto, agentpresentasjon, cinematisk video og reels per eiendom</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Vi kommer til deg: kontoret ditt, listingene dine, byen din. Opptil 3 ulike lokasjoner dekket hver måned.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får samme komplette leveranse som Premium-oppdraget: boligfoto, agentpresentasjon, cinematisk video og 4–5 reels.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">MLS-fotografering inkludert per lokasjon</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Drone foto og video inkludert</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Profesjonell finn.no-fotografering er inkludert for hver av de 2–3 lokasjonene per måned. Ingen ekstra kostnad.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Designet for sosiale plattformer</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Månedlig content strategy call</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver video er optimalisert for kortformat: Instagram Reels, TikTok og YouTube Shorts. Bygget for å prestere, ikke bare filmet og levert.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden og legger en plan for innholdet: hva vi skal fange, hvilke vinkler og hooks som fungerer for kontoret ditt, og hva som faktisk driver visninger og henvendelser.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Done-for-you scripting &amp; kreativ retning</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Prioritert foran engangsoppdrag</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Du trenger aldri å lure på hva du skal si. Hvert opptak kommer med tydelig on-brand script og dokumenterte video-konsepter. Vi tar hånd om idéene. Du møter bare opp.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Dine oppdrag prioriteres foran alle engangsbestillinger. Kun lengre avtaler står foran deg i køen.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">15% rabatt på alle tilleggstjenester</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">3 måneders binding</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Preferred client pricing, også på ekstra fotografering, twilight-shoots, dronevideo eller andre tillegg du måtte bestille utenfor pakken.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Månedlig strategisk samtale</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Fokusert månedlig samtale for å gjennomgå hva som fungerer, planlegge neste måneds innhold, og sørge for at hver video drar i riktig retning for merkevaren din.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">1-måneds binding</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Start med én måned. Ingen langtidsbinding påkrevd. Se resultatene først.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Programmet løper over tre måneder. En fleksibel måte å bygge jevn tilstedeværelse på.</div></div>
               </li>
             </ul>
-
-            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=M%C3%A5nedlig%20%E2%80%94%20Vekst">Utforsk pakke <span class="arrow">→</span></a>
+            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
           </div>
         </article>
-
-        <!-- ━━━━ AUTORITET (featured) ━━━━ -->
         <article class="pkg-card featured" data-card>
-          <span class="featured-ribbon">Mest populær</span>
-          <div class="pkg-header">
-            <div class="pkg-name">Autoritet</div>
-            <div class="pkg-tag"><span class="icon">⊞</span>8 tjenester</div>
+          <div class="pkg-photo" style="background-image:url('img/pakke-6mnd.jpg?v=2')">
+            <span class="featured-ribbon">Mest populær</span>
           </div>
           <div class="pkg-body">
-            <p class="pkg-desc">5 strategiske videoer per måned fra 4 lokasjoner, prioritert booking og full kreativ retning. For meglere som vil dominere markedet.</p>
-            <div class="pkg-price-row">
-              <span class="pkg-price">
-                <span class="from">Fra</span>
-                <span class="amount">18 950</span>
-                <span class="unit">kr</span>
-                <span class="per">/ mnd</span>
-              </span>
-              <span class="pkg-vat">eks. mva</span>
+            <div class="pkg-title-row">
+              <div class="pkg-name">6 måneder</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
             </div>
-
+            <p class="pkg-desc">Fast innholdspartner for kontoret, med seks måneders binding. Vår mest valgte avtale.</p>
+            <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">5 high-performance videoer per måned</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Komplett pakke for opptil 4 eiendommer i måneden</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Mer volum, mer synlighet. En strategisk miks av merkevareautoritet, historiefortelling, scroll-stoppende hooks og fellesskaps-drevet innhold. Designet for å gjøre deg til den mest gjenkjennelige megleren i ditt område.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Full leveranse per eiendom, for opptil fire eiendommer hver måned. Foto, video, reels og drone for hver enkelt.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">4 filming-lokasjoner per måned</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Foto, agentpresentasjon, cinematisk video og reels per eiendom</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Fleksibilitet til å filme der merkevaren din lever: på dine listinger, kontoret ditt, eller ute i Oslo. 4 lokasjoner dekket hver måned.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får samme komplette leveranse som Premium-oppdraget: boligfoto, agentpresentasjon, cinematisk video og 4–5 reels.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">MLS-fotografering inkludert per lokasjon</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Drone foto og video inkludert</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Profesjonell finn.no-fotografering er inkludert for hver av de 4 lokasjonene per måned. Du får komplett dekning, foto og video, uten ekstra kostnad.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Designet for sosiale plattformer</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Månedlig content strategy call</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver video er optimalisert for Instagram Reels, TikTok og YouTube Shorts. Hook, hold, konverter. Hver eneste gang.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden og legger en plan for innholdet: hva vi skal fange, hvilke vinkler og hooks som fungerer for kontoret ditt, og hva som faktisk driver visninger og henvendelser.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Done-for-you scripting &amp; kreativ retning</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">Prioritert foran engangsoppdrag</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Fullt kreativt eierskap. Vi utvikler hvert konsept, skriver hvert script, og leder hvert opptak. Du trenger aldri å lure på hva du skal si eller hvordan du skal si det.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Dine oppdrag prioriteres foran alle engangsbestillinger. Kun 12-måneders partnere står foran deg.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">20% rabatt på alle tilleggstjenester</span>
-                  <span class="feat-plus">+</span>
+                  <span class="feat-label">6 måneders binding</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Preferred client pricing, den dypeste rabatten vi tilbyr, på alle ekstra shoots, videoer eller tillegg du måtte bestille.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Prioritert booking</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Dine shoots bekreftes alltid først. Ingen venteliste, ingen forsinkelser. Du går først i køen.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Månedlig strategisk samtale</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Fokusert månedlig samtale for å gjennomgå hva som fungerer, planlegge neste måneds innhold, og sørge for at hver video bygger merkevaren din i riktig retning.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">1-måneds binding</span>
-                  <span class="feat-plus">+</span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Start med én måned. Ingen langtidsbinding påkrevd. Se resultatene først.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Programmet løper over seks måneder. Konsistens er det som bygger tilstedeværelse og resultater på sosiale medier.</div></div>
               </li>
             </ul>
-
-            <a class="pkg-cta" href="mailto:contact@lumoramedia.no?subject=M%C3%A5nedlig%20%E2%80%94%20Autoritet">Utforsk pakke <span class="arrow">→</span></a>
+            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
+          </div>
+        </article>
+        <article class="pkg-card featured" data-card>
+          <div class="pkg-photo" style="background-image:url('img/pakke-12mnd.jpg?v=2')">
+            <span class="featured-ribbon">Beste verdi</span>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-title-row">
+              <div class="pkg-name">12 måneder</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
+            </div>
+            <p class="pkg-desc">Fast innholdspartner for kontoret, med tolv måneders binding, til vår beste pris per måned.</p>
+            <div class="pkg-feats-label">Dette får du</div>
+            <ul class="feat-list">
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Komplett pakke for opptil 4 eiendommer i måneden</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Full leveranse per eiendom, for opptil fire eiendommer hver måned. Foto, video, reels og drone for hver enkelt.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Foto, agentpresentasjon, cinematisk video og reels per eiendom</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får samme komplette leveranse som Premium-oppdraget: boligfoto, agentpresentasjon, cinematisk video og 4–5 reels.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Drone foto og video inkludert</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Månedlig content strategy call</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden og legger en plan for innholdet: hva vi skal fange, hvilke vinkler og hooks som fungerer for kontoret ditt, og hva som faktisk driver visninger og henvendelser.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Høyeste prioritet, du står alltid først</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Du står øverst i køen, foran alle andre oppdrag. Dine bookinger bekreftes alltid først, uten venteliste.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">12 måneders binding</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Programmet løper over tolv måneder, til beste pris per måned. Maksimal tilstedeværelse og størst verdi over tid.</div></div>
+              </li>
+            </ul>
+            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
           </div>
         </article>
 
@@ -1439,42 +1414,30 @@
 
       <div class="addon-grid">
 
-        <article class="addon">
-          <div class="addon-name">Twilight-innhold</div>
-          <div class="addon-price">
-            3 650 kr
-            <span class="vat">eks. mva</span>
-          </div>
+        <article class="addon" style="background-image:url('img/tillegg-event.jpg?v=2')">
+          <div class="addon-name">Event video &amp; foto</div>
           <ul class="feat-mini">
-            <li>Stemningsfulle solnedgangsbilder</li>
-            <li>+76% visninger som hovedbilde</li>
-            <li>Skaper emosjonell appell og premium følelse</li>
+            <li>Arrangement, firmaevent, feiring</li>
+            <li>Foto og video i én leveranse</li>
+            <li>Klart for deling og sosiale medier</li>
           </ul>
         </article>
 
-        <article class="addon">
-          <div class="addon-name">Dronefoto / video ekstra</div>
-          <div class="addon-price multi">
-            <span class="row">750 kr <span class="qty">for 1 bilde</span></span>
-            <span class="row">1 950 kr <span class="qty">for 5–10 bilder</span></span>
-            <span class="row">2 950 kr <span class="qty">for vertikal / horisontal video</span></span>
-            <span class="vat" style="margin-top:4px;">eks. mva</span>
-          </div>
+        <article class="addon" style="background-image:url('img/tillegg-drone.jpg?v=2')">
+          <div class="addon-name">Drone video &amp; foto</div>
           <ul class="feat-mini">
             <li>Lisensiert droneoperatør (EASA A1/A3)</li>
+            <li>Luftfoto og 4K luftvideo</li>
+            <li>Eiendom, landskap, arrangement</li>
           </ul>
         </article>
 
-        <article class="addon">
-          <div class="addon-name">Næringsfoto</div>
-          <div class="addon-price">
-            Fra 6 950 kr
-            <span class="vat">eks. mva</span>
-          </div>
+        <article class="addon" style="background-image:url('img/tillegg-annet.jpg?v=2')">
+          <div class="addon-name">Annet foto &amp; video</div>
           <ul class="feat-mini">
-            <li>Kontor, fasade, industri</li>
-            <li>Dronefoto og dronevideo inkludert</li>
-            <li>Tilpasset størrelse</li>
+            <li>Produktfoto</li>
+            <li>Portrett, sort/hvitt og kunstnerisk</li>
+            <li>Kunstprosjekter, video på forespørsel</li>
           </ul>
         </article>
 
@@ -1487,74 +1450,42 @@
     <div class="container">
       <div class="section-header">
         <span class="eyebrow">Slik jobber vi</span>
-        <h2 class="h-section">Fra booking til <span class="italic">levering,</span><br/>i fire steg.</h2>
-        <p>Fra brief til ferdig fil: en gjennomtenkt prosess der hvert prosjekt får tid, fokus og kvaliteten det fortjener.</p>
+        <h2 class="h-section">Fra kontakt til <span class="italic">levering,</span><br/>i fire steg.</h2>
+        <p>Forklar kort hva du trenger og ta kontakt, så tar vi det derfra. En gjennomtenkt prosess der hvert prosjekt får tid, fokus og kvaliteten det fortjener.</p>
       </div>
 
       <div class="steps-ill">
 
-        <div class="step-ill">
-          <div class="ill" aria-hidden="true">
-            <svg viewBox="0 0 64 64">
-              <rect x="8" y="14" width="48" height="42" rx="3"/>
-              <line x1="8" y1="24" x2="56" y2="24"/>
-              <line x1="20" y1="8" x2="20" y2="18"/>
-              <line x1="44" y1="8" x2="44" y2="18"/>
-              <circle cx="32" cy="40" r="6" fill="currentColor" fill-opacity="0.18"/>
-              <line x1="32" y1="36" x2="32" y2="44"/>
-              <line x1="28" y1="40" x2="36" y2="40"/>
-            </svg>
+        <div class="step-ill" style="background-image:url('img/process-1.jpg?v=4'); background-size: auto 130%; background-position: center 72%;">
+          <div class="step-body">
+            <div class="step-num">1.</div>
+            <div class="step-title">Ta kontakt</div>
+            <div class="step-desc">Forklar kort hva du trenger, så finner vi riktig løsning sammen.</div>
           </div>
-          <div class="step-num">1.</div>
-          <div class="step-title">Booking</div>
-          <div class="step-desc">Velg pakke og dato. Vi bekrefter på e-post.</div>
         </div>
 
-        <div class="step-ill">
-          <div class="ill" aria-hidden="true">
-            <svg viewBox="0 0 64 64">
-              <path d="M14 8 L42 8 L52 18 L52 56 L14 56 Z"/>
-              <polyline points="42,8 42,18 52,18"/>
-              <line x1="20" y1="28" x2="44" y2="28" stroke-width="1.2"/>
-              <line x1="20" y1="34" x2="44" y2="34" stroke-width="1.2"/>
-              <line x1="20" y1="40" x2="36" y2="40" stroke-width="1.2"/>
-              <line x1="42" y1="48" x2="56" y2="34"/>
-              <polygon points="56,34 58,32 60,34 58,36" stroke-linejoin="round"/>
-            </svg>
+        <div class="step-ill" style="background-image:url('img/process-2.jpg?v=2')">
+          <div class="step-body">
+            <div class="step-num">2.</div>
+            <div class="step-title">Planlegging</div>
+            <div class="step-desc">Vi avtaler dato, omfang og hva som skal fanges av eiendommen.</div>
           </div>
-          <div class="step-num">2.</div>
-          <div class="step-title">Brief</div>
-          <div class="step-desc">Kort gjennomgang: vi blir enige om historien, vinklene og lyset.</div>
         </div>
 
-        <div class="step-ill">
-          <div class="ill" aria-hidden="true">
-            <svg viewBox="0 0 64 64">
-              <rect x="8" y="20" width="48" height="32" rx="3"/>
-              <path d="M22 20 L24 14 L40 14 L42 20"/>
-              <circle cx="32" cy="36" r="11"/>
-              <circle cx="32" cy="36" r="6"/>
-              <circle cx="32" cy="36" r="1.6" fill="currentColor"/>
-              <circle cx="14" cy="26" r="1.6" fill="currentColor"/>
-            </svg>
+        <div class="step-ill" style="background-image:url('img/process-3.jpg?v=2')">
+          <div class="step-body">
+            <div class="step-num">3.</div>
+            <div class="step-title">Opptak</div>
+            <div class="step-desc">Én dag på stedet. Foto, film og drone, fanget av én operatør.</div>
           </div>
-          <div class="step-num">3.</div>
-          <div class="step-title">Opptak</div>
-          <div class="step-desc">Én dag på stedet. Foto, film og drone, fanget av én operatør.</div>
         </div>
 
-        <div class="step-ill">
-          <div class="ill" aria-hidden="true">
-            <svg viewBox="0 0 64 64">
-              <rect x="6" y="20" width="40" height="28" rx="2"/>
-              <polyline points="6,20 26,36 46,20"/>
-              <path d="M36 14 L58 6 L52 28 L46 22 L36 14 Z"/>
-              <line x1="36" y1="14" x2="46" y2="22" stroke-width="1.2"/>
-            </svg>
+        <div class="step-ill" style="background-image:url('img/process-4.jpg?v=2')">
+          <div class="step-body">
+            <div class="step-num">4.</div>
+            <div class="step-title">Levering</div>
+            <div class="step-desc">Endelige filer i innboksen. Bilder klare for finn.no, 4K-video og sosiale klipp.</div>
           </div>
-          <div class="step-num">4.</div>
-          <div class="step-title">Levering</div>
-          <div class="step-desc">Endelige filer i innboksen. Bilder klare for finn.no, 4K-video og sosiale klipp.</div>
         </div>
 
       </div>
@@ -1649,7 +1580,7 @@
         <div class="contact-copy">
           <span class="eyebrow">Kontakt</span>
           <h2 class="h-section">La oss snakke om ditt <span class="italic">neste prosjekt.</span></h2>
-          <p>Send en kort beskrivelse av eiendommen og hva du trenger. Vi svarer vanligvis innen 3 timer på hverdager.</p>
+          <p>Send en kort beskrivelse av eiendommen og hva du trenger. Vi svarer vanligvis innen 8 timer på hverdager.</p>
           <div class="meta">Lumora Media · Oslo · contact@lumoramedia.no</div>
         </div>
 
@@ -1677,15 +1608,15 @@
           <div class="cf-field">
             <label for="cf-service">Tjeneste</label>
             <select id="cf-service" name="service">
-              <option>Basis-pakke</option>
-              <option>Standard-pakke</option>
-              <option>Premium-pakke</option>
-              <option>Custom-pakke</option>
-              <option>Månedlig pakke: Vekst</option>
-              <option>Månedlig pakke: Autoritet</option>
-              <option>Twilight-innhold</option>
-              <option>Dronefoto / video</option>
-              <option>Næringsfoto</option>
+              <option>Standard, per eiendom</option>
+              <option>Premium, per eiendom</option>
+              <option>Månedlig partner, 3 mnd</option>
+              <option>Månedlig partner, 6 mnd</option>
+              <option>Månedlig partner, 12 mnd</option>
+              <option>Skreddersydd pakke</option>
+              <option>Event video &amp; foto</option>
+              <option>Drone video &amp; foto</option>
+              <option>Annet foto &amp; video</option>
               <option>Annet</option>
             </select>
           </div>
@@ -1707,13 +1638,6 @@
         </div>
 
       </div>
-    </div>
-  </section>
-
-  <!-- =================== FOOTER NOTE =================== -->
-  <section class="footnote-band">
-    <div class="container">
-      <p>Gratis i Oslo. Utenfor Oslo faktureres reiseutgifter.<br/>Alle priser er eks. mva.</p>
     </div>
   </section>
 
@@ -1741,14 +1665,14 @@
           <h4>Kontakt</h4>
           <a href="mailto:contact@lumoramedia.no">contact@lumoramedia.no</a>
           <p>Oslo, Norge</p>
-          <p style="font-style:italic; color:var(--gold-light); margin-top:6px;">Vi svarer vanligvis innen 3 timer</p>
+          <p style="font-style:italic; color:var(--gold-light); margin-top:6px;">Vi svarer vanligvis innen 8 timer på hverdager</p>
         </div>
 
       </div>
 
       <div class="footer-bottom">
         <div>© 2026 · Lumora Media · Oslo</div>
-        <div>Alle priser er eks. mva.</div>
+        <div>«Vi belyser din eiendom.»</div>
       </div>
     </div>
   </footer>
