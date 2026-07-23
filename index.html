@@ -290,17 +290,19 @@
     border-radius: 10px;
     overflow: hidden;
     display: flex; flex-direction: column;
-    transition: transform .4s var(--ease), border-color .4s var(--ease);
+    transition: border-color .5s var(--ease), box-shadow .5s var(--ease), transform .4s var(--ease);
   }
   .pkg-card:hover { border-color: rgba(184,150,90,.35); }
-  .pkg-card.featured { border: 2px solid var(--gold); }
+  .pkg-card.featured { border: 1px solid var(--border); }
+  .pkg-card:hover { border-color: rgba(184,150,90,.5); box-shadow: 0 16px 40px rgba(0,0,0,.34); }
 
   .featured-ribbon {
     position: absolute;
     top: 0; left: 50%;
     transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--bg);
+    background: linear-gradient(180deg, #E0BE86 0%, #C49E62 46%, #A9854A 100%);
+    color: #2A1E0E;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 2px 6px rgba(0,0,0,.28);
     padding: 5px 16px;
     font-family: var(--sans); font-weight: 500; font-size: 10px;
     letter-spacing: 0.28em; text-transform: uppercase;
@@ -943,6 +945,10 @@
   .proof-item:hover p { transform: translate3d(0,-2px,0); }
   .proof-item { transition: border-color .3s var(--ease); }
   .proof-item:hover { border-color: rgba(184,150,90,.4); }
+
+  .footer-social { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; color: var(--gold); font-family: var(--sans); font-weight: 500; font-size: 14px; letter-spacing: 0.01em; transition: color .3s var(--ease), transform .3s var(--ease); }
+  .footer-social svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .footer-social:hover { color: var(--gold-light); transform: translateX(3px); }
 </style>
 <script>
   (function () {
@@ -978,7 +984,7 @@
         <span class="name">Lumora<span class="second">Media</span></span>
       </a>
       <nav class="nav-links" aria-label="Primær">
-        <a href="#tilbyr">Hva vi tilbyr</a>
+        <a href="#tilbyr">For hvem</a>
         <a href="#pakker">Pakker</a>
         <a href="#monthly">Månedlig</a>
         <a href="#tillegg">Tillegg</a>
@@ -1006,7 +1012,7 @@
         </div>
 
         <!-- Trust bar -->
-        <div class="trust" aria-label="Hva vi tilbyr">
+        <div class="trust" aria-label="For hvem">
           <div class="trust-item">
             <span class="trust-ico" aria-hidden="true">
               <svg viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 10,22 20,10 13,10 14,2"/></svg>
@@ -1030,12 +1036,12 @@
     </div>
   </section>
 
-  <!-- =================== INTRO BAND: Hva vi tilbyr =================== -->
+  <!-- =================== INTRO BAND: For hvem =================== -->
   <section class="intro-band" id="tilbyr">
     <div class="container">
-      <span class="eyebrow">Hva vi tilbyr</span>
-      <h2>Det beste innholdet, til <span class="italic">konkurransedyktig pris.</span></h2>
-      <p>Meglere og meglerkontorer over hele Norge stoler på oss for å produsere innhold som selger boliger raskere. Premium kvalitet, rask levering, og en ærlig prisstruktur uten skjulte kostnader.</p>
+      <span class="eyebrow">Hvem vi jobber med</span>
+      <h2>Bygget for meglere som <span class="italic">vil mer.</span></h2>
+      <p>Du kommer til å like å jobbe med oss hvis du vil bygge en merkevare, ikke bare selge den neste boligen. Vi passer best for meglere som tenker langsiktig, tar tilstedeværelsen sin på alvor, og vet at innhold i toppklasse er det som tiltrekker de dyreste oppdragene. Hvis det høres ut som deg, er du på rett sted.</p>
     </div>
   </section>
 
@@ -1057,43 +1063,36 @@
               <div class="pkg-name">Standard</div>
               <div class="pkg-tag"><span class="icon">⊞</span>4 tjenester</div>
             </div>
-            <p class="pkg-desc">Sterkt innhold til boligannonsen, uten agentvideo. Foto, cinematisk video, reels og drone.</p>
+            <p class="pkg-desc">Alt for en sterk boligannonse. Foto med drone, meglerpresentasjon på video og korte reels for sosiale medier.</p>
             <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Profesjonell boligfoto, ubegrenset antall</span>
+                  <span class="feat-label">Profesjonell boligfoto med drone</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Levering innen 24 timer. Du får så mange bilder som trengs for å vise eiendommen på sitt mest attraktive, i best mulig lys. Interiør, detaljer, eksteriør og drone, alt inkludert.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Inntil 25 bilder av interiør, eksteriør og detaljer, pluss droneopptak der det er tillatt. Levert innen 24 timer.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Cinematisk boligvideo</span>
+                  <span class="feat-label">Meglerpresentasjon på video</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">En cinematisk video som viser boligen i bevegelse. Rolige, gjennomtenkte bevegelser, fargegradert og klar for finn.no og sosiale medier.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Du gir oss stikkordene, vi lager en tett presentasjon på 30 til 40 sekunder med deg foran kamera. Klar for sosiale medier.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">4–5 korte reels for Instagram, TikTok og Shorts</span>
+                  <span class="feat-label">5 til 10 korte reels av boligen</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Fire til fem korte vertikale klipp bygget for kortformat. Hver optimalisert for å stoppe scrollingen og drive visninger.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Drone foto og video inkludert</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Fem til ti vertikale klipp du kan legge ut gjennom hele måneden, bygget for å stoppe scrollingen og vise fram boligen.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
                   <span class="feat-label">Ingen binding</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Bestill når du trenger det. Ingen månedlig forpliktelse, ingen bindingstid.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Bestill når du trenger det. Ingen månedlig forpliktelse.</div></div>
               </li>
             </ul>
             <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
@@ -1102,57 +1101,49 @@
 
         <article class="pkg-card featured" data-card>
           <div class="pkg-photo" style="background-image:url('img/pakke-premium.jpg?v=2')">
-            <span class="featured-ribbon">Mest populær</span>
           </div>
           <div class="pkg-body">
             <div class="pkg-title-row">
               <div class="pkg-name">Premium</div>
               <div class="pkg-tag"><span class="icon">⊞</span>5 tjenester</div>
             </div>
-            <p class="pkg-desc">Den komplette mediepakken. Alt en bolig trenger for å skille seg ut, inkludert agentpresentasjon.</p>
+            <p class="pkg-desc">Den komplette pakken. Alt i Standard, pluss en cinematisk kortfilm der boligeieren forteller historien om hjemmet.</p>
             <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Agentpresentasjon premium reel</span>
+                  <span class="feat-label">Cinematisk kortfilm</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Megleren presenterer eiendommen on-camera. Vi skriver manuset og lager en viral hook som fanger seeren i de første sekundene og holder på engasjementet. Profesjonelt fargegradert med caption-overlays.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Boligeieren forteller historien om hjemmet sitt og hva det har betydd for dem, med intervju og profesjonell lyssetting. Vil ikke boligeieren være foran kamera, kan megleren fortelle historien på deres vegne. En film på to til tre minutter som vekker følelser og viser kjøpere hvorfor dette er det rette valget. Horisontal, med vertikal versjon for sosiale medier.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Profesjonell boligfoto, ubegrenset antall</span>
+                  <span class="feat-label">Profesjonell boligfoto med drone</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Levering innen 24 timer. Du får så mange bilder som trengs for å vise eiendommen på sitt mest attraktive, i best mulig lys. Interiør, detaljer, eksteriør og drone, alt inkludert.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Ubegrenset antall bilder av interiør, eksteriør og detaljer, pluss droneopptak der det er tillatt. Levert innen 24 timer.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Cinematisk boligvideo</span>
+                  <span class="feat-label">Meglerpresentasjon på video</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">En cinematisk video som viser boligen i bevegelse. Rolige, gjennomtenkte bevegelser, fargegradert og klar for finn.no og sosiale medier.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Du gir oss stikkordene, vi lager en tett presentasjon på 30 til 40 sekunder med deg foran kamera. Klar for sosiale medier.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">4–5 korte reels for Instagram, TikTok og Shorts</span>
+                  <span class="feat-label">5 til 10 korte reels av boligen</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Fire til fem korte vertikale klipp bygget for kortformat. Hver optimalisert for å stoppe scrollingen og drive visninger.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Drone foto og video inkludert</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Fem til ti vertikale klipp du kan legge ut gjennom hele måneden, bygget for å stoppe scrollingen og vise fram boligen.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
                   <span class="feat-label">Ingen binding</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Bestill når du trenger det. Ingen månedlig forpliktelse, ingen bindingstid.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Bestill når du trenger det. Ingen månedlig forpliktelse.</div></div>
               </li>
             </ul>
             <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
@@ -1221,77 +1212,19 @@
       <div class="section-header">
         <span class="eyebrow">Månedlig</span>
         <h2 class="h-section">Fast innholdspartner <span class="italic">for kontoret.</span></h2>
-        <p>Tre nivåer, samme komplette leveranse. Jo lengre binding, jo bedre pris per måned.</p>
+        <p>To nivåer, samme komplette leveranse. Jo lengre binding, jo bedre betingelser.</p>
       </div>
 
-      <div class="offer-three">
-
-        <article class="pkg-card" data-card>
-          <div class="pkg-photo" style="background-image:url('img/pakke-3mnd.jpg?v=3')"></div>
-          <div class="pkg-body">
-            <div class="pkg-title-row">
-              <div class="pkg-name">3 måneder</div>
-              <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
-            </div>
-            <p class="pkg-desc">Fast innholdspartner for kontoret, med tre måneders binding. En fleksibel start.</p>
-            <div class="pkg-feats-label">Dette får du</div>
-            <ul class="feat-list">
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Komplett pakke for opptil 4 eiendommer i måneden</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Full leveranse per eiendom, for opptil fire eiendommer hver måned. Foto, video, reels og drone for hver enkelt.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Foto, agentpresentasjon, cinematisk video og reels per eiendom</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får samme komplette leveranse som Premium-oppdraget: boligfoto, agentpresentasjon, cinematisk video og 4–5 reels.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Drone foto og video inkludert</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Lisensiert droneoperatør (EASA A1/A3). Luftfoto og luftvideo som viser tomten, omgivelsene og nabolaget.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Månedlig content strategy call</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden og legger en plan for innholdet: hva vi skal fange, hvilke vinkler og hooks som fungerer for kontoret ditt, og hva som faktisk driver visninger og henvendelser.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Prioritert foran engangsoppdrag</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Dine oppdrag prioriteres foran alle engangsbestillinger. Kun lengre avtaler står foran deg i køen.</div></div>
-              </li>
-              <li class="feat-item">
-                <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">3 måneders binding</span>
-                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                </button>
-                <div class="feat-body"><div class="feat-body-inner">Programmet løper over tre måneder. En fleksibel måte å bygge jevn tilstedeværelse på.</div></div>
-              </li>
-            </ul>
-            <a class="pkg-cta" href="#kontakt">Ta kontakt <span class="arrow">&#8594;</span></a>
-          </div>
-        </article>
+      <div class="offer-two">
         <article class="pkg-card featured" data-card>
           <div class="pkg-photo" style="background-image:url('img/pakke-6mnd.jpg?v=2')">
-            <span class="featured-ribbon">Mest populær</span>
           </div>
           <div class="pkg-body">
             <div class="pkg-title-row">
               <div class="pkg-name">6 måneder</div>
               <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
             </div>
-            <p class="pkg-desc">Fast innholdspartner for kontoret, med seks måneders binding. Vår mest valgte avtale.</p>
+            <p class="pkg-desc">Fast innholdspartner for kontoret, med seks måneders binding.</p>
             <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
@@ -1303,10 +1236,10 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Foto, agentpresentasjon, cinematisk video og reels per eiendom</span>
+                  <span class="feat-label">Full innholdspakke per eiendom</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får samme komplette leveranse som Premium-oppdraget: boligfoto, agentpresentasjon, cinematisk video og 4–5 reels.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får full leveranse: ubegrenset antall bilder, meglerpresentasjon, korte reels og cinematisk film. Så mange bilder som trengs for at boligen skal skinne i sitt beste lys.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1317,10 +1250,10 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Månedlig content strategy call</span>
+                  <span class="feat-label">Månedlig strategisamtale og statistikk</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden og legger en plan for innholdet: hva vi skal fange, hvilke vinkler og hooks som fungerer for kontoret ditt, og hva som faktisk driver visninger og henvendelser.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden, går gjennom tallene fra forrige periode (visninger, rekkevidde og henvendelser) og legger en plan for innholdet videre: hvilke vinkler og hooks som fungerer best for kontoret ditt.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1361,10 +1294,10 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Foto, agentpresentasjon, cinematisk video og reels per eiendom</span>
+                  <span class="feat-label">Full innholdspakke per eiendom</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får samme komplette leveranse som Premium-oppdraget: boligfoto, agentpresentasjon, cinematisk video og 4–5 reels.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får full leveranse: ubegrenset antall bilder, meglerpresentasjon, korte reels og cinematisk film. Så mange bilder som trengs for at boligen skal skinne i sitt beste lys.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1375,10 +1308,10 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Månedlig content strategy call</span>
+                  <span class="feat-label">Månedlig strategisamtale og statistikk</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden og legger en plan for innholdet: hva vi skal fange, hvilke vinkler og hooks som fungerer for kontoret ditt, og hva som faktisk driver visninger og henvendelser.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Vi setter oss ned én gang i måneden, går gjennom tallene fra forrige periode (visninger, rekkevidde og henvendelser) og legger en plan for innholdet videre: hvilke vinkler og hooks som fungerer best for kontoret ditt.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1510,9 +1443,9 @@
           <p>Ifølge NAR sin teknologirapport 2024 rangerer 52% av meglere sosiale medier som sin viktigste kilde til kvalifiserte leads, foran CRM, finn.no og alt annet.</p>
         </div>
         <div class="proof-item">
-          <div class="stat">15–20%</div>
+          <div class="stat">15-20%</div>
           <div class="ttl">Instagram-aktive meglere selger mer</div>
-          <p>En studie publisert i Journal of Promotion Management fant at meglere med aktiv Instagram-tilstedeværelse hadde 15–20% høyere sannsynlighet for å øke salget sitt år over år, sterkest på selgersiden.</p>
+          <p>En studie publisert i Journal of Promotion Management fant at meglere med aktiv Instagram-tilstedeværelse hadde 15-20% høyere sannsynlighet for å øke salget sitt år over år, sterkest på selgersiden.</p>
         </div>
         <div class="proof-item">
           <div class="stat">32%</div>
@@ -1649,6 +1582,10 @@
         <div class="footer-brand">
           <div class="mark"><span>Lumora</span><span class="second">Media</span></div>
           <div class="tagline">«Vi belyser din eiendom.»</div>
+          <a class="footer-social" href="https://www.instagram.com/lumoramedianorge/" target="_blank" rel="noopener noreferrer" aria-label="Følg oss på Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+            <span>@lumoramedianorge</span>
+          </a>
         </div>
 
         <div class="footer-col">
