@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lumora Media: Premium boliginnhold for meglere i Norge</title>
-<meta name="description" content="Foto, video, drone og twilight-innhold for meglere og meglerkontorer i Oslo og Norge. Premium eiendomsinnhold, rask levering, konkurransedyktige priser." />
+<meta name="description" content="Foto, video, drone og cinematisk innhold for meglere og meglerkontorer i Oslo. Premium eiendomsinnhold som bygger merkevaren din og får boliger til å skille seg ut." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -289,12 +289,15 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     overflow: hidden;
+    will-change: transform;
+    backface-visibility: hidden;
     display: flex; flex-direction: column;
-    transition: border-color .5s var(--ease), box-shadow .5s var(--ease), transform .4s var(--ease);
+    transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
   }
   .pkg-card:hover { border-color: rgba(184,150,90,.35); }
   .pkg-card.featured { border: 1px solid var(--border); }
-  .pkg-card:hover { border-color: rgba(184,150,90,.5); box-shadow: 0 16px 40px rgba(0,0,0,.34); }
+  .pkg-card:hover { transform: translateY(-3px) !important; border-color: rgba(184,150,90,.7); box-shadow: 0 14px 34px rgba(0,0,0,.32); }
+  html.has-anim .pkg-card { transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease) !important; }
 
   .featured-ribbon {
     position: absolute;
@@ -946,9 +949,10 @@
   .proof-item { transition: border-color .3s var(--ease); }
   .proof-item:hover { border-color: rgba(184,150,90,.4); }
 
-  .footer-social { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; color: var(--gold); font-family: var(--sans); font-weight: 500; font-size: 14px; letter-spacing: 0.01em; transition: color .3s var(--ease), transform .3s var(--ease); }
+  .footer-social { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; color: var(--gold); font-family: var(--sans); font-weight: 500; font-size: 14px; letter-spacing: 0.01em; transition: color .3s var(--ease); }
   .footer-social svg { width: 20px; height: 20px; flex-shrink: 0; }
-  .footer-social:hover { color: var(--gold-light); transform: translateX(3px); }
+  .footer-social:hover { color: var(--gold-light); }
+  .pkg-card .pkg-body { margin-top: -1px; }
 </style>
 <script>
   (function () {
@@ -1017,7 +1021,7 @@
             <span class="trust-ico" aria-hidden="true">
               <svg viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 10,22 20,10 13,10 14,2"/></svg>
             </span>
-            <span class="trust-text">Foto innen 24 timer · Video innen 48 timer</span>
+            <span class="trust-text">Foto innen 24 timer · Video innen 72 timer</span>
           </div>
           <div class="trust-item">
             <span class="trust-ico" aria-hidden="true">
@@ -1040,8 +1044,8 @@
   <section class="intro-band" id="tilbyr">
     <div class="container">
       <span class="eyebrow">Hvem vi jobber med</span>
-      <h2>Bygget for meglere som <span class="italic">vil mer.</span></h2>
-      <p>Du kommer til å like å jobbe med oss hvis du vil bygge en merkevare, ikke bare selge den neste boligen. Vi passer best for meglere som tenker langsiktig, tar tilstedeværelsen sin på alvor, og vet at innhold i toppklasse er det som tiltrekker de dyreste oppdragene. Hvis det høres ut som deg, er du på rett sted.</p>
+      <h2>Bygget for meglere og kontorer som <span class="italic">vil mer.</span></h2>
+      <p>Du kommer til å like å jobbe med oss hvis du vil bygge en merkevare, ikke bare selge den neste boligen. Vi passer like godt for enkeltmeglere og meglerkontorer som tenker langsiktig, tar tilstedeværelsen sin på alvor, og vet at innhold i toppklasse er det som tiltrekker de dyreste oppdragene. Hvis det høres ut som deg eller kontoret ditt, er du på rett sted.</p>
     </div>
   </section>
 
@@ -1260,7 +1264,7 @@
                   <span class="feat-label">Prioritert foran engangsoppdrag</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Dine oppdrag prioriteres foran alle engangsbestillinger. Kun 12-måneders partnere står foran deg.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Skjer det noe som haster, stopper vi det vi holder på med og rykker ut for deg. Engangskunder får alltid en rettferdig plass i kalenderen, men om to ting kolliderer, er det partnerne som vinner. Kun 12-måneders partnere står foran deg.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1315,10 +1319,17 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
+                  <span class="feat-label">Ubrukte måneder spares opp</span>
+                  <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                </button>
+                <div class="feat-body"><div class="feat-body-inner">Vet du at en måned bare gir én eller ingen eiendom, kan du velge å stå over opptak den måneden. Beløpet spares opp i «banken» i inntil to måneder, og du henter det ut når du vil ha mer innhold enn vanlig, for eksempel en travlere måned eller et større prosjekt.</div></div>
+              </li>
+              <li class="feat-item">
+                <button class="feat-btn" type="button" aria-expanded="false">
                   <span class="feat-label">Høyeste prioritet, du står alltid først</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Du står øverst i køen, foran alle andre oppdrag. Dine bookinger bekreftes alltid først, uten venteliste.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Skjer det noe som haster, stopper vi det vi holder på med og rykker ut for deg. Du står øverst, foran alle andre oppdrag. Engangskunder får alltid en rettferdig plass, men kolliderer to ting, vinner du hver gang.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1543,7 +1554,6 @@
             <select id="cf-service" name="service">
               <option>Standard, per eiendom</option>
               <option>Premium, per eiendom</option>
-              <option>Månedlig partner, 3 mnd</option>
               <option>Månedlig partner, 6 mnd</option>
               <option>Månedlig partner, 12 mnd</option>
               <option>Skreddersydd pakke</option>
