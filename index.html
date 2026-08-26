@@ -3,12 +3,20 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lumora Media: Premium boliginnhold for meglere i Norge</title>
+<title>ZEJAKOV: Kinematisk boliginnhold for meglere i Oslo</title>
 <meta name="description" content="Foto, video, drone og cinematisk innhold for meglere og meglerkontorer i Oslo. Premium eiendomsinnhold som bygger merkevaren din og får boliger til å skille seg ut." />
+<link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="brand/favicon-180.png" />
+<meta property="og:title" content="ZEJAKOV: Kinematisk boliginnhold" />
+<meta property="og:description" content="Kinematiske boligfilmer, foto og drone som forteller historien bak hjemmet." />
+<meta property="og:image" content="https://zejakov.com/brand/og-image.png" />
+<meta property="og:url" content="https://zejakov.com" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:wght@300;400&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@400&display=swap"
   rel="stylesheet"
 />
 
@@ -28,7 +36,7 @@
     --muted:        #8A8480;
     --text:         #C8CCD2;
 
-    --serif: 'Archivo', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --sans:  'Archivo', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
 
     --container: 1280px;
@@ -62,13 +70,13 @@
     text-transform: uppercase; color: var(--gold);
   }
   .h-section {
-    font-family: var(--serif); font-weight: 300;
-    font-size: clamp(36px, 4.6vw, 64px);
-    letter-spacing: -0.005em;
-    line-height: 1.05;
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(44px, 5.6vw, 82px);
+    letter-spacing: 0;
+    line-height: 1.0;
     color: var(--white);
   }
-  .h-section .italic { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .h-section .italic { font-style: italic; color: var(--gold-light); font-weight: 500; }
   .sub-lede {
     font-family: var(--sans); font-weight: 300;
     font-size: 17px; line-height: 1.65;
@@ -122,10 +130,10 @@
     color: var(--white);
     line-height: 1;
   }
-  .logo svg { width: 24px; height: 24px; color: var(--gold); flex-shrink: 0; }
+  .logo svg, .logo img { width: 26px; height: 26px; color: var(--gold); flex-shrink: 0; }
   .logo .name {
-    font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
-    font-size: 20px; letter-spacing: 0.22em;
+    font-family: 'Montserrat', system-ui, sans-serif; font-weight: 300;
+    font-size: 17px; letter-spacing: 0.20em;
     text-transform: uppercase;
   }
   .logo .second {
@@ -187,15 +195,15 @@
   .hero-content { max-width: 880px; position: relative; }
   .hero-content .eyebrow { display: inline-block; }
   .hero h1 {
-    margin-top: 26px;
-    margin-bottom: 26px;
-    font-family: var(--serif); font-weight: 300;
-    font-size: clamp(50px, 7.2vw, 100px);
-    letter-spacing: -0.01em;
-    line-height: 1;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(60px, 8.4vw, 128px);
+    letter-spacing: 0;
+    line-height: 0.97;
     color: var(--white);
   }
-  .hero h1 .italic { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .hero h1 .italic { font-style: italic; color: var(--gold-light); font-weight: 500; }
   .hero .hero-sub {
     font-family: var(--sans); font-weight: 300;
     font-size: 18px; line-height: 1.65;
@@ -253,9 +261,9 @@
   }
   .intro-band .eyebrow { display: inline-block; margin-bottom: 22px; }
   .intro-band h2 {
-    font-family: var(--serif); font-weight: 300;
-    font-size: clamp(36px, 4.4vw, 56px);
-    line-height: 1.1;
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(42px, 5.2vw, 70px);
+    line-height: 1.04;
     margin-bottom: 22px;
     color: var(--white);
   }
@@ -722,7 +730,7 @@
     padding-bottom: 56px;
     border-bottom: 1px solid var(--border);
   }
-  .footer-brand .mark {
+  .footer-brand .mark { font-family: 'Montserrat', system-ui, sans-serif; font-weight: 300; letter-spacing: 0.20em; 
     font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 300;
     font-size: clamp(32px, 4vw, 44px);
     letter-spacing: 0.18em; text-transform: uppercase;
@@ -975,17 +983,9 @@
   <!-- =================== NAV =================== -->
   <header class="nav">
     <div class="nav-inner">
-      <a class="logo" href="#" aria-label="Lumora Media">
-        <svg viewBox="0 0 100 100" aria-hidden="true">
-          <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="50,14 88,80 12,80"/>
-            <line x1="0" y1="47" x2="31" y2="47"/>
-            <line x1="69" y1="47" x2="100" y2="22"/>
-            <line x1="69" y1="47" x2="100" y2="47" opacity="0.65"/>
-            <line x1="69" y1="47" x2="100" y2="72" opacity="0.4"/>
-          </g>
-        </svg>
-        <span class="name">Lumora<span class="second">Media</span></span>
+      <a class="logo" href="#" aria-label="ZEJAKOV">
+        <img src="brand/logo.svg" alt="" aria-hidden="true" />
+        <span class="name">ZEJAKOV</span>
       </a>
       <nav class="nav-links" aria-label="Primær">
         <a href="#tilbyr">For hvem</a>
@@ -996,7 +996,7 @@
         <a href="#vurderinger">Vurderinger</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
-      <a class="nav-cta" href="mailto:booking@lumoramedia.no">Book nå</a>
+      <a class="nav-cta" href="mailto:booking@zejakov.com">Book nå</a>
     </div>
   </header>
 
@@ -1007,9 +1007,9 @@
 
     <div class="container">
       <div class="hero-content">
-        <span class="eyebrow">Premium eiendomsinnhold · Oslo</span>
-        <h1>Innhold som <span class="italic">selger</span><br/>boliger raskere.</h1>
-        <p class="hero-sub">Merkevarevideoer, foto, drone, reels og cinematisk film, for meglere som vil skille seg ut.</p>
+        <span class="eyebrow">Kinematisk eiendomsinnhold · Oslo</span>
+        <h1>Vi selger en <span class="italic">livsstil,</span><br/>ikke bare en bolig.</h1>
+        <p class="hero-sub">Kinematiske boligfilmer, foto og drone som forteller historien bak hjemmet, og får kjøpere til å forelske seg lenge før visningen.</p>
         <div class="hero-cta-row">
           <a class="btn-gold" href="#pakker">Se pakker <span>→</span></a>
           <a class="btn-ghost" href="#kontakt">Snakk med oss <span>→</span></a>
@@ -1021,7 +1021,7 @@
             <span class="trust-ico" aria-hidden="true">
               <svg viewBox="0 0 24 24"><polygon points="13,2 4,14 11,14 10,22 20,10 13,10 14,2"/></svg>
             </span>
-            <span class="trust-text">Foto innen 24 timer · Video innen 72 timer</span>
+            <span class="trust-text">Kinematisk film og foto</span>
           </div>
           <div class="trust-item">
             <span class="trust-ico" aria-hidden="true">
@@ -1086,10 +1086,10 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">5 til 10 korte reels av boligen</span>
+                  <span class="feat-label">5 korte reels av boligen</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Fem til ti vertikale klipp du kan legge ut gjennom hele måneden, bygget for å stoppe scrollingen og vise fram boligen.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Fem vertikale klipp du kan legge ut gjennom hele måneden, bygget for å stoppe scrollingen og vise fram boligen.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1137,10 +1137,10 @@
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">5 til 10 korte reels av boligen</span>
+                  <span class="feat-label">5 korte reels av boligen</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Fem til ti vertikale klipp du kan legge ut gjennom hele måneden, bygget for å stoppe scrollingen og vise fram boligen.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Fem vertikale klipp du kan legge ut gjennom hele måneden, bygget for å stoppe scrollingen og vise fram boligen.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1226,24 +1226,24 @@
           <div class="pkg-body">
             <div class="pkg-title-row">
               <div class="pkg-name">6 måneder</div>
-              <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>3 eiendommer / mnd</div>
             </div>
             <p class="pkg-desc">Fast innholdspartner for kontoret, med seks måneders binding.</p>
             <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Komplett pakke for opptil 4 eiendommer i måneden</span>
+                  <span class="feat-label">3 eiendommer og 1 film i måneden</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Full leveranse per eiendom, for opptil fire eiendommer hver måned. Foto, video, reels og drone for hver enkelt.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Full leveranse for tre eiendommer hver måned: foto, video, reels og drone. I tillegg får du én garantert cinematisk film.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
                   <span class="feat-label">Full innholdspakke per eiendom</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får full leveranse: ubegrenset antall bilder, meglerpresentasjon, korte reels og cinematisk film. Så mange bilder som trengs for at boligen skal skinne i sitt beste lys.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får full leveranse: ubegrenset antall bilder, meglerpresentasjon og korte reels. Og hver måned lager vi én cinematisk film, for den eiendommen som fortjener den mest.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1284,24 +1284,24 @@
           <div class="pkg-body">
             <div class="pkg-title-row">
               <div class="pkg-name">12 måneder</div>
-              <div class="pkg-tag"><span class="icon">⊞</span>4 eiendommer / mnd</div>
+              <div class="pkg-tag"><span class="icon">⊞</span>3 eiendommer / mnd</div>
             </div>
             <p class="pkg-desc">Fast innholdspartner for kontoret, med tolv måneders binding, til vår beste pris per måned.</p>
             <div class="pkg-feats-label">Dette får du</div>
             <ul class="feat-list">
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
-                  <span class="feat-label">Komplett pakke for opptil 4 eiendommer i måneden</span>
+                  <span class="feat-label">3 eiendommer og 1 film i måneden</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Full leveranse per eiendom, for opptil fire eiendommer hver måned. Foto, video, reels og drone for hver enkelt.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Full leveranse for tre eiendommer hver måned: foto, video, reels og drone. I tillegg får du én garantert cinematisk film.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
                   <span class="feat-label">Full innholdspakke per eiendom</span>
                   <span class="feat-plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                 </button>
-                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får full leveranse: ubegrenset antall bilder, meglerpresentasjon, korte reels og cinematisk film. Så mange bilder som trengs for at boligen skal skinne i sitt beste lys.</div></div>
+                <div class="feat-body"><div class="feat-body-inner">Hver eiendom får full leveranse: ubegrenset antall bilder, meglerpresentasjon og korte reels. Og hver måned lager vi én cinematisk film, for den eiendommen som fortjener den mest.</div></div>
               </li>
               <li class="feat-item">
                 <button class="feat-btn" type="button" aria-expanded="false">
@@ -1473,7 +1473,7 @@
       <div class="section-header">
         <span class="eyebrow">Vurderinger</span>
         <h2 class="h-section">Hva kundene <span class="italic">sier.</span></h2>
-        <p>Ekte tilbakemeldinger fra meglere og kunder som har jobbet med Lumora Media.</p>
+        <p>Ekte tilbakemeldinger fra meglere og kunder som har jobbet med ZEJAKOV.</p>
       </div>
 
       <div class="rev-carousel" id="rev-carousel">
@@ -1498,7 +1498,7 @@
           </div>
           <div class="cf-field">
             <label for="rev-message">Din vurdering *</label>
-            <textarea id="rev-message" name="message" rows="4" required placeholder="Fortell om din opplevelse med Lumora Media."></textarea>
+            <textarea id="rev-message" name="message" rows="4" required placeholder="Fortell om din opplevelse med ZEJAKOV."></textarea>
           </div>
           <button class="cf-submit" type="submit">Send vurdering <span>→</span></button>
         </form>
@@ -1525,7 +1525,7 @@
           <span class="eyebrow">Kontakt</span>
           <h2 class="h-section">La oss snakke om ditt <span class="italic">neste prosjekt.</span></h2>
           <p>Send en kort beskrivelse av eiendommen og hva du trenger. Vi svarer vanligvis innen 8 timer på hverdager.</p>
-          <div class="meta">Lumora Media · Oslo · contact@lumoramedia.no</div>
+          <div class="meta">ZEJAKOV · Oslo · kontakt@zejakov.com</div>
         </div>
 
         <form class="contact-form" id="contact-form">
@@ -1590,8 +1590,8 @@
       <div class="footer-grid">
 
         <div class="footer-brand">
-          <div class="mark"><span>Lumora</span><span class="second">Media</span></div>
-          <div class="tagline">«Vi belyser din eiendom.»</div>
+          <div class="mark"><span>ZEJAKOV</span></div>
+          <div class="tagline">«Historien bak hjemmet.»</div>
           <a class="footer-social" href="https://www.instagram.com/lumoramedianorge/" target="_blank" rel="noopener noreferrer" aria-label="Følg oss på Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
             <span>@lumoramedianorge</span>
@@ -1610,7 +1610,7 @@
 
         <div class="footer-col">
           <h4>Kontakt</h4>
-          <a href="mailto:contact@lumoramedia.no">contact@lumoramedia.no</a>
+          <a href="mailto:kontakt@zejakov.com">kontakt@zejakov.com</a>
           <p>Oslo, Norge</p>
           <p style="font-style:italic; color:var(--gold-light); margin-top:6px;">Vi svarer vanligvis innen 8 timer på hverdager</p>
         </div>
@@ -1618,8 +1618,8 @@
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 · Lumora Media · Oslo</div>
-        <div>«Vi belyser din eiendom.»</div>
+        <div>© 2026 · ZEJAKOV · Oslo</div>
+        <div>«Historien bak hjemmet.»</div>
       </div>
     </div>
   </footer>
@@ -1728,7 +1728,7 @@
         if (error) {
           console.error('Supabase insert error:', error);
           status.style.color = '#e0736b';
-          status.textContent = 'Noe gikk galt. Prøv igjen, eller send oss en e-post på contact@lumoramedia.no.';
+          status.textContent = 'Noe gikk galt. Prøv igjen, eller send oss en e-post på kontakt@zejakov.com.';
           if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
           return;
         }
